@@ -40,10 +40,10 @@ const AddNewTeamIDScreen = props => {
   const [styledTextFieldValue, setStyledTextFieldValue] = React.useState('');
   const [textAreaValue, setTextAreaValue] = React.useState('');
   const [textInputValue, setTextInputValue] = React.useState('');
-  const shootrSupabaseDBAPIAddUserPOST =
-    ShootrSupabaseDBAPIApi.useAddUserPOST();
   const shootrSupabaseDBAPIMatchResultsPostPOST =
     ShootrSupabaseDBAPIApi.useMatchResultsPostPOST();
+  const shootrSupabaseDBAPIAddUserPOST =
+    ShootrSupabaseDBAPIApi.useAddUserPOST();
 
   return (
     <ScreenContainer

@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Button,
   Icon,
   ScreenContainer,
   Touchable,
@@ -47,36 +46,6 @@ const AdvancedAnalyticsGAAPaymentScreen = props => {
           dimensions.width
         )}
       />
-      {/* View 2 */}
-      <View>
-        <Button
-          accessible={true}
-          iconPosition={'left'}
-          onPress={() => {
-            try {
-              navigation.navigate('AdvancedAnalyticsGAAWelcomeScreen');
-            } catch (err) {
-              console.error(err);
-            }
-          }}
-          title={'Get Started'}
-          {...GlobalStyles.ButtonStyles(theme)['Button'].props}
-          style={StyleSheet.applyWidth(
-            StyleSheet.compose(
-              GlobalStyles.ButtonStyles(theme)['Button'].style,
-              theme.typography.button,
-              {
-                backgroundColor: palettes.App.Peoplebit_Turquoise,
-                color: palettes.App.Communical_Yellow_Emoticons,
-                fontFamily: 'Inter_700Bold',
-                marginLeft: 40,
-                marginRight: 40,
-              }
-            ),
-            dimensions.width
-          )}
-        />
-      </View>
       {/* Final Menu */}
       <View
         style={StyleSheet.applyWidth(
