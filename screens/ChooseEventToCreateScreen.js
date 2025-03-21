@@ -1,17 +1,14 @@
 import React from 'react';
-import {
-  Button,
-  Icon,
-  ScreenContainer,
-  Touchable,
-  withTheme,
-} from '@draftbit/ui';
+import { Button, ExpoImage, ScreenContainer, withTheme } from '@draftbit/ui';
 import { View } from 'react-native';
+import * as GlobalStyles from '../GlobalStyles.js';
 import * as ShootrSupabaseDBAPIApi from '../apis/ShootrSupabaseDBAPIApi.js';
 import * as GlobalVariables from '../config/GlobalVariableContext';
+import Images from '../config/Images';
 import palettes from '../themes/palettes';
 import Breakpoints from '../utils/Breakpoints';
 import * as StyleSheet from '../utils/StyleSheet';
+import imageSource from '../utils/imageSource';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
 const ChooseEventToCreateScreen = props => {
@@ -39,6 +36,33 @@ const ChooseEventToCreateScreen = props => {
         dimensions.width
       )}
     >
+      {/* View 2 */}
+      <View
+        style={StyleSheet.applyWidth(
+          { alignItems: 'center' },
+          dimensions.width
+        )}
+      >
+        <ExpoImage
+          allowDownscaling={true}
+          cachePolicy={'disk'}
+          contentPosition={'center'}
+          resizeMode={'cover'}
+          transitionDuration={300}
+          transitionEffect={'cross-dissolve'}
+          transitionTiming={'ease-in-out'}
+          {...GlobalStyles.ExpoImageStyles(theme)['Image 4'].props}
+          source={imageSource(Images['shootrredesigninappimage'])}
+          style={StyleSheet.applyWidth(
+            StyleSheet.compose(
+              GlobalStyles.ExpoImageStyles(theme)['Image 4'].style,
+              { height: 200, width: 200 }
+            ),
+            dimensions.width
+          )}
+        />
+      </View>
+
       <View
         style={StyleSheet.applyWidth(
           { height: '80%', justifyContent: 'center' },
@@ -157,133 +181,6 @@ const ChooseEventToCreateScreen = props => {
           )}
           title={'Add Event'}
         />
-      </View>
-      {/* Updated Menu */}
-      <View
-        style={StyleSheet.applyWidth(
-          {
-            alignItems: 'center',
-            backgroundColor: palettes.App.Peoplebit_Turquoise,
-            borderTopLeftRadius: 32,
-            borderTopRightRadius: 32,
-            flexDirection: 'row',
-            height: 117,
-            justifyContent: 'space-between',
-            paddingBottom: 20,
-            paddingLeft: 30,
-            paddingRight: 30,
-          },
-          dimensions.width
-        )}
-      >
-        {/* Team Tab */}
-        <Touchable
-          onPress={() => {
-            try {
-              navigation.navigate('TeamHomeScreen');
-            } catch (err) {
-              console.error(err);
-            }
-          }}
-          activeOpacity={0.8}
-          disabledOpacity={0.8}
-          style={StyleSheet.applyWidth(
-            { borderColor: palettes.App.Communical_Yellow_Emoticons },
-            dimensions.width
-          )}
-        >
-          <View
-            style={StyleSheet.applyWidth(
-              {
-                alignItems: 'center',
-                height: 48,
-                justifyContent: 'center',
-                width: 48,
-              },
-              dimensions.width
-            )}
-          >
-            <Icon
-              size={24}
-              color={palettes.App.Communical_Yellow_Emoticons}
-              name={'MaterialIcons/sports-baseball'}
-            />
-          </View>
-        </Touchable>
-        {/* Home Tab */}
-        <Touchable
-          onPress={() => {
-            try {
-              navigation.navigate('HomeScreen');
-            } catch (err) {
-              console.error(err);
-            }
-          }}
-          activeOpacity={0.8}
-          disabledOpacity={0.8}
-        >
-          <View
-            style={StyleSheet.applyWidth(
-              {
-                alignItems: 'center',
-                height: 48,
-                justifyContent: 'center',
-                width: 48,
-              },
-              dimensions.width
-            )}
-          >
-            {/* Home Icon */}
-            <Icon
-              size={24}
-              color={palettes.App.Communical_Yellow_Emoticons}
-              name={'Entypo/home'}
-            />
-          </View>
-        </Touchable>
-        {/* Profile Tab */}
-        <Touchable
-          onPress={() => {
-            try {
-              if (Constants['SportValue'] === 2) {
-                navigation.navigate('GAAUserProfileBasicScreen');
-              } else {
-              }
-
-              if (Constants['SportValue'] === 1) {
-                navigation.navigate('SoccerUserProfileScreen');
-              } else {
-              }
-
-              if (Constants['SportValue'] === 3) {
-                navigation.navigate('RugbyUserProfileScreen');
-              } else {
-              }
-            } catch (err) {
-              console.error(err);
-            }
-          }}
-          activeOpacity={0.8}
-          disabledOpacity={0.8}
-        >
-          <View
-            style={StyleSheet.applyWidth(
-              {
-                alignItems: 'center',
-                height: 48,
-                justifyContent: 'center',
-                width: 48,
-              },
-              dimensions.width
-            )}
-          >
-            <Icon
-              size={24}
-              color={palettes.App.Communical_Yellow_Emoticons}
-              name={'AntDesign/user'}
-            />
-          </View>
-        </Touchable>
       </View>
     </ScreenContainer>
   );

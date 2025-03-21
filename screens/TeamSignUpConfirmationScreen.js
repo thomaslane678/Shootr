@@ -39,7 +39,7 @@ const TeamSignUpConfirmationScreen = props => {
           transitionEffect={'cross-dissolve'}
           transitionTiming={'ease-in-out'}
           {...GlobalStyles.ExpoImageStyles(theme)['Image (default)'].props}
-          source={imageSource(Images['ShootrBigLogoTransparent'])}
+          source={imageSource(Images['shootrredesigninappimage'])}
           style={StyleSheet.applyWidth(
             StyleSheet.compose(
               GlobalStyles.ExpoImageStyles(theme)['Image (default)'].style,
@@ -151,7 +151,7 @@ const TeamSignUpConfirmationScreen = props => {
           iconPosition={'left'}
           onPress={() => {
             try {
-              navigation.navigate('AddUserScreen');
+              navigation.navigate('TeamSignUpExplainerScreen');
             } catch (err) {
               console.error(err);
             }
@@ -171,7 +171,7 @@ const TeamSignUpConfirmationScreen = props => {
             ),
             dimensions.width
           )}
-          title={'Create Your Profile'}
+          title={'Continue'}
         />
       </View>
     </ScreenContainer>

@@ -45,13 +45,6 @@ export const TextInputStyles = theme =>
     },
   });
 
-export const ImageStyles = theme =>
-  StyleSheet.create({
-    Image: { style: { height: 100, width: 100 }, props: {} },
-    'Image 2': { style: { height: 100, width: 100 }, props: {} },
-    'Image 3': { style: { height: 100, width: 100 }, props: {} },
-  });
-
 export const ButtonStyles = theme =>
   StyleSheet.create({
     Button: {
@@ -80,6 +73,13 @@ export const CircleStyles = theme =>
       },
       props: {},
     },
+  });
+
+export const ImageStyles = theme =>
+  StyleSheet.create({
+    Image: { style: { height: 100, width: 100 }, props: {} },
+    'Image 2': { style: { height: 100, width: 100 }, props: {} },
+    'Image 3': { style: { height: 100, width: 100 }, props: {} },
   });
 
 export const TextStyles = theme =>
@@ -170,4 +170,5 @@ export const LinkStyles = theme =>
 export const ExpoImageStyles = theme =>
   StyleSheet.create({
     'Image (default)': { style: { height: 100, width: 100 }, props: {} },
+    'Image 4': { style: { height: 100, width: 100 }, props: {} },
   });

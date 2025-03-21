@@ -16,16 +16,14 @@ import * as StyleSheet from '../utils/StyleSheet';
 import imageSource from '../utils/imageSource';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
-const AddUserChooseSportScreen = props => {
+const TeamSignUpExplainerScreen = props => {
   const { theme, navigation } = props;
   const dimensions = useWindowDimensions();
   const Constants = GlobalVariables.useValues();
   const Variables = Constants;
-  const setGlobalVariableValue = GlobalVariables.useSetValue();
 
   return (
     <ScreenContainer hasSafeArea={false} scrollable={false}>
-      {/* View 2 */}
       <View
         style={StyleSheet.applyWidth(
           { alignItems: 'center', height: 150 },
@@ -51,10 +49,8 @@ const AddUserChooseSportScreen = props => {
           )}
         />
       </View>
-      {/* View 3 */}
-      <View>
-        {/* Spacer 2 */}
-        <Spacer bottom={8} left={8} right={8} top={8} />
+
+      <View style={StyleSheet.applyWidth({ height: 200 }, dimensions.width)}>
         <Text
           accessible={true}
           selectable={false}
@@ -63,17 +59,32 @@ const AddUserChooseSportScreen = props => {
             StyleSheet.compose(
               GlobalStyles.TextStyles(theme)['Text 2'].style,
               theme.typography.body1,
-              {
-                alignSelf: 'center',
-                fontFamily: 'Inter_600SemiBold',
-                fontSize: 30,
-              }
+              { alignSelf: 'center', fontFamily: 'Inter_600SemiBold' }
             ),
             dimensions.width
           )}
         >
-          {'Choose Sport'}
+          {'How Shootr Works'}
         </Text>
+        {/* Text 3 */}
+        <Text
+          accessible={true}
+          selectable={false}
+          {...GlobalStyles.TextStyles(theme)['Text 2'].props}
+          style={StyleSheet.applyWidth(
+            StyleSheet.compose(
+              GlobalStyles.TextStyles(theme)['Text 2'].style,
+              theme.typography.body1,
+              { alignSelf: 'center', textAlign: 'center' }
+            ),
+            dimensions.width
+          )}
+        >
+          {
+            "You'll notice a lot of empty screens for now - this bit is up to you! "
+          }
+        </Text>
+        <Spacer bottom={8} left={8} right={8} top={8} />
         {/* Text 2 */}
         <Text
           accessible={true}
@@ -83,79 +94,77 @@ const AddUserChooseSportScreen = props => {
             StyleSheet.compose(
               GlobalStyles.TextStyles(theme)['Text 2'].style,
               theme.typography.body1,
-              {
-                alignSelf: 'center',
-                fontFamily: 'Inter_600SemiBold',
-                fontSize: 15,
-                textAlign: 'center',
-              }
+              { alignSelf: 'center', textAlign: 'center' }
             ),
             dimensions.width
           )}
         >
-          {'Welcome to Shootr - first choose your sport to begin'}
+          {
+            'Use the + button on the Team Home Screen to begin adding Fixtures & Events, and watch it go from there\nEnjoy!'
+          }
         </Text>
+        {/* Spacer 2 */}
+        <Spacer bottom={8} left={8} right={8} top={8} />
+        {/* Spacer 3 */}
         <Spacer bottom={8} left={8} right={8} top={8} />
       </View>
-
+      {/* View 3 */}
       <View
         style={StyleSheet.applyWidth(
-          { height: '50%', justifyContent: 'flex-start' },
+          { alignItems: 'center', height: 200 },
           dimensions.width
         )}
       >
-        {/* Button 3 */}
-        <Button
-          accessible={true}
-          iconPosition={'left'}
-          onPress={() => {
-            try {
-              setGlobalVariableValue({
-                key: 'Sport',
-                value: 'Football',
-              });
-              setGlobalVariableValue({
-                key: 'SportValue',
-                value: 1,
-              });
-              navigation.navigate('SignUpAddTeamIDScreen');
-            } catch (err) {
-              console.error(err);
-            }
-          }}
-          {...GlobalStyles.ButtonStyles(theme)['Button'].props}
+        <ExpoImage
+          allowDownscaling={true}
+          cachePolicy={'disk'}
+          contentPosition={'center'}
+          resizeMode={'cover'}
+          transitionDuration={300}
+          transitionEffect={'cross-dissolve'}
+          transitionTiming={'ease-in-out'}
+          {...GlobalStyles.ExpoImageStyles(theme)['Image (default)'].props}
+          source={imageSource(Images['shootrexplainerimage'])}
           style={StyleSheet.applyWidth(
             StyleSheet.compose(
-              GlobalStyles.ButtonStyles(theme)['Button'].style,
-              {
-                backgroundColor: palettes.App.Peoplebit_Turquoise,
-                borderRadius: 12,
-                color: palettes.App.Communical_Yellow_Emoticons,
-                fontFamily: 'Inter_600SemiBold',
-                marginLeft: 30,
-                marginRight: 30,
-              }
+              GlobalStyles.ExpoImageStyles(theme)['Image (default)'].style,
+              { height: 200, width: 200 }
             ),
             dimensions.width
           )}
-          title={'Soccer'}
         />
+      </View>
+      {/* View 4 */}
+      <View style={StyleSheet.applyWidth({ height: 100 }, dimensions.width)}>
+        {/* Text 3 */}
+        <Text
+          accessible={true}
+          selectable={false}
+          {...GlobalStyles.TextStyles(theme)['Text 2'].props}
+          style={StyleSheet.applyWidth(
+            StyleSheet.compose(
+              GlobalStyles.TextStyles(theme)['Text 2'].style,
+              theme.typography.body1,
+              { alignSelf: 'center', textAlign: 'center' }
+            ),
+            dimensions.width
+          )}
+        >
+          {
+            'Please note only Admins can add and delete Fixtures & Events\nFollow the link below to set up your personal account now'
+          }
+        </Text>
         <Spacer bottom={8} left={8} right={8} top={8} />
-        {/* Button 4 */}
+      </View>
+      {/* View 2 */}
+      <View>
+        <Spacer bottom={8} left={8} right={8} top={8} />
         <Button
           accessible={true}
           iconPosition={'left'}
           onPress={() => {
             try {
-              setGlobalVariableValue({
-                key: 'Sport',
-                value: 'Rugby',
-              });
-              setGlobalVariableValue({
-                key: 'SportValue',
-                value: 3,
-              });
-              navigation.navigate('SignUpAddTeamIDScreen');
+              navigation.navigate('SignUpScreen');
             } catch (err) {
               console.error(err);
             }
@@ -164,60 +173,22 @@ const AddUserChooseSportScreen = props => {
           style={StyleSheet.applyWidth(
             StyleSheet.compose(
               GlobalStyles.ButtonStyles(theme)['Button'].style,
+              theme.typography.button,
               {
                 backgroundColor: palettes.App.Peoplebit_Turquoise,
                 borderRadius: 12,
                 color: palettes.App.Communical_Yellow_Emoticons,
-                fontFamily: 'Inter_600SemiBold',
-                marginLeft: 30,
-                marginRight: 30,
+                marginLeft: 40,
+                marginRight: 40,
               }
             ),
             dimensions.width
           )}
-          title={'Rugby Union'}
-        />
-        {/* Spacer 2 */}
-        <Spacer bottom={8} left={8} right={8} top={8} />
-        {/* Button 5 */}
-        <Button
-          accessible={true}
-          iconPosition={'left'}
-          onPress={() => {
-            try {
-              setGlobalVariableValue({
-                key: 'Sport',
-                value: 'GAA',
-              });
-              setGlobalVariableValue({
-                key: 'SportValue',
-                value: 2,
-              });
-              navigation.navigate('SignUpAddTeamIDScreen');
-            } catch (err) {
-              console.error(err);
-            }
-          }}
-          {...GlobalStyles.ButtonStyles(theme)['Button'].props}
-          style={StyleSheet.applyWidth(
-            StyleSheet.compose(
-              GlobalStyles.ButtonStyles(theme)['Button'].style,
-              {
-                backgroundColor: palettes.App.Peoplebit_Turquoise,
-                borderRadius: 12,
-                color: palettes.App.Communical_Yellow_Emoticons,
-                fontFamily: 'Inter_600SemiBold',
-                marginLeft: 30,
-                marginRight: 30,
-              }
-            ),
-            dimensions.width
-          )}
-          title={'GAA'}
+          title={'Create Your Profile'}
         />
       </View>
     </ScreenContainer>
   );
 };
 
-export default withTheme(AddUserChooseSportScreen);
+export default withTheme(TeamSignUpExplainerScreen);

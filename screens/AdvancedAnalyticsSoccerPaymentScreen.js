@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Button,
   Icon,
   ScreenContainer,
   Touchable,
@@ -47,37 +46,7 @@ const AdvancedAnalyticsSoccerPaymentScreen = props => {
           dimensions.width
         )}
       />
-      {/* View 2 */}
-      <View>
-        <Button
-          accessible={true}
-          iconPosition={'left'}
-          onPress={() => {
-            try {
-              navigation.navigate('AdvancedAnalyticsGAAWelcomeScreen');
-            } catch (err) {
-              console.error(err);
-            }
-          }}
-          title={'Get Started'}
-          {...GlobalStyles.ButtonStyles(theme)['Button'].props}
-          style={StyleSheet.applyWidth(
-            StyleSheet.compose(
-              GlobalStyles.ButtonStyles(theme)['Button'].style,
-              theme.typography.button,
-              {
-                backgroundColor: palettes.App.Peoplebit_Turquoise,
-                color: palettes.App.Communical_Yellow_Emoticons,
-                fontFamily: 'Inter_700Bold',
-                marginLeft: 40,
-                marginRight: 40,
-              }
-            ),
-            dimensions.width
-          )}
-        />
-      </View>
-      {/* Updated Menu */}
+      {/* Final Menu */}
       <View
         style={StyleSheet.applyWidth(
           {
@@ -170,11 +139,26 @@ const AdvancedAnalyticsSoccerPaymentScreen = props => {
               }
 
               if (Constants['SportValue'] === 1) {
-                navigation.navigate('SoccerUserProfileScreen');
+                navigation.navigate('SoccerUserProfileBasicScreen');
               } else {
               }
 
               if (Constants['SportValue'] === 3) {
+                navigation.navigate('RugbyUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 6) {
+                navigation.navigate('SoccerUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 7) {
+                navigation.navigate('GAAUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 8) {
                 navigation.navigate('RugbyUserProfileScreen');
               } else {
               }

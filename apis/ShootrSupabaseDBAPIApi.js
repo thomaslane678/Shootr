@@ -275,7 +275,6 @@ export const addUserPOST = async (
     Basic,
     Grade,
     Location,
-    Player,
     PlayerName,
     Sport,
     Sportcode,
@@ -304,7 +303,7 @@ export const addUserPOST = async (
         Name: PlayerName,
         Username: Username,
         AccountStatus: Basic,
-        Role: Player,
+        Role: Basic,
         Team: Team,
         TeamID: TeamID,
         Location: Location,
@@ -369,7 +368,6 @@ export const FetchAddUserPOST = ({
   Basic,
   Grade,
   Location,
-  Player,
   PlayerName,
   Sport,
   Sportcode,
@@ -393,7 +391,6 @@ export const FetchAddUserPOST = ({
       Basic,
       Grade,
       Location,
-      Player,
       PlayerName,
       Sport,
       Sportcode,
@@ -593,6 +590,483 @@ export const FetchAddUser2POST = ({
     }
   }, [error]);
   return children({ loading, data, error, refetchAddUser2: refetch });
+};
+
+export const addUser3POST = async (
+  Constants,
+  {
+    Basic,
+    Grade,
+    Location,
+    Player,
+    PlayerName,
+    Sport,
+    Sportcode,
+    Team,
+    TeamID,
+    Username,
+    position,
+    rolecode,
+  },
+  handlers,
+  timeout
+) => {
+  const url = `https://mgjrztlrnhnktfnxbkhb.supabase.co/rest/v1/UserList`;
+  const controller = new AbortController();
+  let timeoutObj;
+  if (timeout) {
+    timeoutObj = setTimeout(() => {
+      const err = new Error(`Timeout after ${timeout}ms`);
+      err.__type = 'TIMEOUT';
+      controller.abort(err);
+    }, timeout);
+  }
+  try {
+    const res = await fetch(url, {
+      body: JSON.stringify({
+        Name: PlayerName,
+        Username: Username,
+        AccountStatus: Basic,
+        Role: Player,
+        Team: Team,
+        TeamID: TeamID,
+        Location: Location,
+        Grade: Grade,
+        Sport: Sport,
+        Position: position,
+        SportCode: Sportcode,
+        RoleCode: rolecode,
+      }),
+      headers: cleanHeaders({
+        Accept: 'application/json',
+        Authorization: Constants['Authorization_Header'],
+        'Content-Type': 'application/json',
+        Prefer: 'return=representation',
+        apiKey: Constants['Api_Key_Header'],
+      }),
+      method: 'POST',
+      signal: controller.signal,
+    });
+    timeoutObj && clearTimeout(timeoutObj);
+    return handleResponse(res, handlers);
+  } catch (e) {
+    if (e.__type === 'TIMEOUT') {
+      handlers.onTimeout?.();
+    } else if (timeoutObj) {
+      clearTimeout(timeoutObj);
+    }
+    throw e;
+  }
+};
+
+export const useAddUser3POST = (initialArgs = {}, { handlers = {} } = {}) => {
+  const queryClient = useQueryClient();
+  const Constants = GlobalVariables.useValues();
+  return useMutation(
+    args => addUser3POST(Constants, { ...initialArgs, ...args }, handlers),
+    {
+      onError: (err, variables, { previousValue }) => {
+        if (previousValue) {
+          return queryClient.setQueryData('UserList', previousValue);
+        }
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries('UserList');
+        queryClient.invalidateQueries('UserLists');
+      },
+    }
+  );
+};
+
+export const FetchAddUser3POST = ({
+  children,
+  onData = () => {},
+  handlers = {},
+  refetchInterval,
+  refetchOnWindowFocus,
+  refetchOnMount,
+  refetchOnReconnect,
+  retry,
+  staleTime,
+  timeout,
+  Basic,
+  Grade,
+  Location,
+  Player,
+  PlayerName,
+  Sport,
+  Sportcode,
+  Team,
+  TeamID,
+  Username,
+  position,
+  rolecode,
+}) => {
+  const Constants = GlobalVariables.useValues();
+  const isFocused = useIsFocused();
+  const prevIsFocused = usePrevious(isFocused);
+
+  const {
+    isLoading: loading,
+    data,
+    error,
+    mutate: refetch,
+  } = useAddUser3POST(
+    {
+      Basic,
+      Grade,
+      Location,
+      Player,
+      PlayerName,
+      Sport,
+      Sportcode,
+      Team,
+      TeamID,
+      Username,
+      position,
+      rolecode,
+    },
+    {
+      refetchInterval,
+      refetchOnWindowFocus,
+      refetchOnMount,
+      refetchOnReconnect,
+      retry,
+      staleTime,
+      timeout,
+      handlers: { onData, ...handlers },
+    }
+  );
+
+  React.useEffect(() => {
+    if (!prevIsFocused && isFocused && refetchOnWindowFocus !== false) {
+      refetch();
+    }
+  }, [isFocused, prevIsFocused, refetchOnWindowFocus]);
+
+  React.useEffect(() => {
+    if (error) {
+      console.error(error);
+      if (error.status) {
+        console.error('Fetch error: ' + error.status + ' ' + error.statusText);
+      }
+    }
+  }, [error]);
+  return children({ loading, data, error, refetchAddUser3: refetch });
+};
+
+export const addUser4POST = async (
+  Constants,
+  {
+    Basic,
+    Grade,
+    Location,
+    Player,
+    PlayerName,
+    Sport,
+    Sportcode,
+    Team,
+    TeamID,
+    Username,
+    position,
+    rolecode,
+  },
+  handlers,
+  timeout
+) => {
+  const url = `https://mgjrztlrnhnktfnxbkhb.supabase.co/rest/v1/UserList`;
+  const controller = new AbortController();
+  let timeoutObj;
+  if (timeout) {
+    timeoutObj = setTimeout(() => {
+      const err = new Error(`Timeout after ${timeout}ms`);
+      err.__type = 'TIMEOUT';
+      controller.abort(err);
+    }, timeout);
+  }
+  try {
+    const res = await fetch(url, {
+      body: JSON.stringify({
+        Name: PlayerName,
+        Username: Username,
+        AccountStatus: Basic,
+        Role: Player,
+        Team: Team,
+        TeamID: TeamID,
+        Location: Location,
+        Grade: Grade,
+        Sport: Sport,
+        Position: position,
+        SportCode: Sportcode,
+        RoleCode: rolecode,
+      }),
+      headers: cleanHeaders({
+        Accept: 'application/json',
+        Authorization: Constants['Authorization_Header'],
+        'Content-Type': 'application/json',
+        Prefer: 'return=representation',
+        apiKey: Constants['Api_Key_Header'],
+      }),
+      method: 'POST',
+      signal: controller.signal,
+    });
+    timeoutObj && clearTimeout(timeoutObj);
+    return handleResponse(res, handlers);
+  } catch (e) {
+    if (e.__type === 'TIMEOUT') {
+      handlers.onTimeout?.();
+    } else if (timeoutObj) {
+      clearTimeout(timeoutObj);
+    }
+    throw e;
+  }
+};
+
+export const useAddUser4POST = (initialArgs = {}, { handlers = {} } = {}) => {
+  const queryClient = useQueryClient();
+  const Constants = GlobalVariables.useValues();
+  return useMutation(
+    args => addUser4POST(Constants, { ...initialArgs, ...args }, handlers),
+    {
+      onError: (err, variables, { previousValue }) => {
+        if (previousValue) {
+          return queryClient.setQueryData('UserList', previousValue);
+        }
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries('UserList');
+        queryClient.invalidateQueries('UserLists');
+      },
+    }
+  );
+};
+
+export const FetchAddUser4POST = ({
+  children,
+  onData = () => {},
+  handlers = {},
+  refetchInterval,
+  refetchOnWindowFocus,
+  refetchOnMount,
+  refetchOnReconnect,
+  retry,
+  staleTime,
+  timeout,
+  Basic,
+  Grade,
+  Location,
+  Player,
+  PlayerName,
+  Sport,
+  Sportcode,
+  Team,
+  TeamID,
+  Username,
+  position,
+  rolecode,
+}) => {
+  const Constants = GlobalVariables.useValues();
+  const isFocused = useIsFocused();
+  const prevIsFocused = usePrevious(isFocused);
+
+  const {
+    isLoading: loading,
+    data,
+    error,
+    mutate: refetch,
+  } = useAddUser4POST(
+    {
+      Basic,
+      Grade,
+      Location,
+      Player,
+      PlayerName,
+      Sport,
+      Sportcode,
+      Team,
+      TeamID,
+      Username,
+      position,
+      rolecode,
+    },
+    {
+      refetchInterval,
+      refetchOnWindowFocus,
+      refetchOnMount,
+      refetchOnReconnect,
+      retry,
+      staleTime,
+      timeout,
+      handlers: { onData, ...handlers },
+    }
+  );
+
+  React.useEffect(() => {
+    if (!prevIsFocused && isFocused && refetchOnWindowFocus !== false) {
+      refetch();
+    }
+  }, [isFocused, prevIsFocused, refetchOnWindowFocus]);
+
+  React.useEffect(() => {
+    if (error) {
+      console.error(error);
+      if (error.status) {
+        console.error('Fetch error: ' + error.status + ' ' + error.statusText);
+      }
+    }
+  }, [error]);
+  return children({ loading, data, error, refetchAddUser4: refetch });
+};
+
+export const deleteUserlistByTeamIDDELETE = async (
+  Constants,
+  { TeamID, Username },
+  handlers,
+  timeout
+) => {
+  const paramsDict = {};
+  if (TeamID !== undefined) {
+    paramsDict['TeamID'] = `eq.${renderParam(TeamID)}`;
+  }
+  if (Username !== undefined) {
+    paramsDict['Username'] = `eq.${renderParam(Username)}`;
+  }
+  const url = `https://mgjrztlrnhnktfnxbkhb.supabase.co/rest/v1/UserList${renderQueryString(
+    paramsDict
+  )}`;
+  const controller = new AbortController();
+  let timeoutObj;
+  if (timeout) {
+    timeoutObj = setTimeout(() => {
+      const err = new Error(`Timeout after ${timeout}ms`);
+      err.__type = 'TIMEOUT';
+      controller.abort(err);
+    }, timeout);
+  }
+  try {
+    const res = await fetch(url, {
+      headers: cleanHeaders({
+        Accept: 'application/json',
+        Authorization: Constants['Authorization_Header'],
+        'Content-Type': 'application/json',
+        Prefer: 'return=representation',
+        apiKey: Constants['Api_Key_Header'],
+      }),
+      method: 'DELETE',
+      signal: controller.signal,
+    });
+    timeoutObj && clearTimeout(timeoutObj);
+    return handleResponse(res, handlers);
+  } catch (e) {
+    if (e.__type === 'TIMEOUT') {
+      handlers.onTimeout?.();
+    } else if (timeoutObj) {
+      clearTimeout(timeoutObj);
+    }
+    throw e;
+  }
+};
+
+export const useDeleteUserlistByTeamIDDELETE = (
+  initialArgs = {},
+  { handlers = {} } = {}
+) => {
+  const queryClient = useQueryClient();
+  const Constants = GlobalVariables.useValues();
+  return useMutation(
+    args =>
+      deleteUserlistByTeamIDDELETE(
+        Constants,
+        { ...initialArgs, ...args },
+        handlers
+      ),
+    {
+      onError: (err, variables, { previousValue }) => {
+        if (previousValue) {
+          return queryClient.setQueryData('UserList', previousValue);
+        }
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries('UserList');
+        queryClient.invalidateQueries('UserLists');
+      },
+    }
+  );
+};
+
+export const eventAttendanceDeleteDELETE = async (
+  Constants,
+  { EventID, PlayerID },
+  handlers,
+  timeout
+) => {
+  const paramsDict = {};
+  if (EventID !== undefined) {
+    paramsDict['EventID'] = `eq.${renderParam(EventID)}`;
+  }
+  if (PlayerID !== undefined) {
+    paramsDict['PlayerID'] = `eq.${renderParam(PlayerID)}`;
+  }
+  const url = `https://mgjrztlrnhnktfnxbkhb.supabase.co/rest/v1/EventAttendance${renderQueryString(
+    paramsDict
+  )}`;
+  const controller = new AbortController();
+  let timeoutObj;
+  if (timeout) {
+    timeoutObj = setTimeout(() => {
+      const err = new Error(`Timeout after ${timeout}ms`);
+      err.__type = 'TIMEOUT';
+      controller.abort(err);
+    }, timeout);
+  }
+  try {
+    const res = await fetch(url, {
+      headers: cleanHeaders({
+        Accept: 'application/json',
+        Authorization: Constants['Authorization_Header'],
+        'Content-Type': 'application/json',
+        apiKey: Constants['Api_Key_Header'],
+      }),
+      method: 'DELETE',
+      signal: controller.signal,
+    });
+    timeoutObj && clearTimeout(timeoutObj);
+    return handleResponse(res, handlers);
+  } catch (e) {
+    if (e.__type === 'TIMEOUT') {
+      handlers.onTimeout?.();
+    } else if (timeoutObj) {
+      clearTimeout(timeoutObj);
+    }
+    throw e;
+  }
+};
+
+export const useEventAttendanceDeleteDELETE = (
+  initialArgs = {},
+  { handlers = {} } = {}
+) => {
+  const queryClient = useQueryClient();
+  const Constants = GlobalVariables.useValues();
+  return useMutation(
+    args =>
+      eventAttendanceDeleteDELETE(
+        Constants,
+        { ...initialArgs, ...args },
+        handlers
+      ),
+    {
+      onError: (err, variables, { previousValue }) => {
+        if (previousValue) {
+          return queryClient.setQueryData('EventAttendance', previousValue);
+        }
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries('EventAttendance');
+        queryClient.invalidateQueries('EventAttendances');
+      },
+    }
+  );
 };
 
 export const eventAttendanceGetGET = async (
@@ -1659,6 +2133,75 @@ export const FetchEventsListByTeamIDSingleGET = ({
   });
 };
 
+export const eventsListDeleteDELETE = async (
+  Constants,
+  { EventID },
+  handlers,
+  timeout
+) => {
+  const paramsDict = {};
+  if (EventID !== undefined) {
+    paramsDict['EventID'] = `eq.${renderParam(EventID)}`;
+  }
+  const url = `https://mgjrztlrnhnktfnxbkhb.supabase.co/rest/v1/TeamEvents${renderQueryString(
+    paramsDict
+  )}`;
+  const controller = new AbortController();
+  let timeoutObj;
+  if (timeout) {
+    timeoutObj = setTimeout(() => {
+      const err = new Error(`Timeout after ${timeout}ms`);
+      err.__type = 'TIMEOUT';
+      controller.abort(err);
+    }, timeout);
+  }
+  try {
+    const res = await fetch(url, {
+      headers: cleanHeaders({
+        Accept: 'application/json',
+        Authorization: Constants['Authorization_Header'],
+        'Content-Type': 'application/json',
+        Prefer: 'return=representation',
+        apiKey: Constants['Api_Key_Header'],
+      }),
+      method: 'DELETE',
+      signal: controller.signal,
+    });
+    timeoutObj && clearTimeout(timeoutObj);
+    return handleResponse(res, handlers);
+  } catch (e) {
+    if (e.__type === 'TIMEOUT') {
+      handlers.onTimeout?.();
+    } else if (timeoutObj) {
+      clearTimeout(timeoutObj);
+    }
+    throw e;
+  }
+};
+
+export const useEventsListDeleteDELETE = (
+  initialArgs = {},
+  { handlers = {} } = {}
+) => {
+  const queryClient = useQueryClient();
+  const Constants = GlobalVariables.useValues();
+  return useMutation(
+    args =>
+      eventsListDeleteDELETE(Constants, { ...initialArgs, ...args }, handlers),
+    {
+      onError: (err, variables, { previousValue }) => {
+        if (previousValue) {
+          return queryClient.setQueryData('EventList', previousValue);
+        }
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries('EventList');
+        queryClient.invalidateQueries('EventLists');
+      },
+    }
+  );
+};
+
 export const eventsListEventIDGET = async (
   Constants,
   { EventID, TeamID },
@@ -2040,6 +2583,78 @@ export const FetchEventsListPostPOST = ({
     }
   }, [error]);
   return children({ loading, data, error, refetchEventsListPost: refetch });
+};
+
+export const fixtureListDeleteDELETE = async (
+  Constants,
+  { FixtureID, TeamID },
+  handlers,
+  timeout
+) => {
+  const paramsDict = {};
+  if (FixtureID !== undefined) {
+    paramsDict['FixtureID'] = `eq.${renderParam(FixtureID)}`;
+  }
+  if (TeamID !== undefined) {
+    paramsDict['TeamID'] = `eq.${renderParam(TeamID)}`;
+  }
+  const url = `https://mgjrztlrnhnktfnxbkhb.supabase.co/rest/v1/FixtureList${renderQueryString(
+    paramsDict
+  )}`;
+  const controller = new AbortController();
+  let timeoutObj;
+  if (timeout) {
+    timeoutObj = setTimeout(() => {
+      const err = new Error(`Timeout after ${timeout}ms`);
+      err.__type = 'TIMEOUT';
+      controller.abort(err);
+    }, timeout);
+  }
+  try {
+    const res = await fetch(url, {
+      headers: cleanHeaders({
+        Accept: 'application/json',
+        Authorization: Constants['Authorization_Header'],
+        'Content-Type': 'application/json',
+        Prefer: 'return=representation',
+        apiKey: Constants['Api_Key_Header'],
+      }),
+      method: 'DELETE',
+      signal: controller.signal,
+    });
+    timeoutObj && clearTimeout(timeoutObj);
+    return handleResponse(res, handlers);
+  } catch (e) {
+    if (e.__type === 'TIMEOUT') {
+      handlers.onTimeout?.();
+    } else if (timeoutObj) {
+      clearTimeout(timeoutObj);
+    }
+    throw e;
+  }
+};
+
+export const useFixtureListDeleteDELETE = (
+  initialArgs = {},
+  { handlers = {} } = {}
+) => {
+  const queryClient = useQueryClient();
+  const Constants = GlobalVariables.useValues();
+  return useMutation(
+    args =>
+      fixtureListDeleteDELETE(Constants, { ...initialArgs, ...args }, handlers),
+    {
+      onError: (err, variables, { previousValue }) => {
+        if (previousValue) {
+          return queryClient.setQueryData('FixtureList', previousValue);
+        }
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries('FixtureList');
+        queryClient.invalidateQueries('FixtureLists');
+      },
+    }
+  );
 };
 
 export const fixtureListGetGET = async (
@@ -7568,7 +8183,7 @@ export const FetchNotificationsGetByTeamIDGET = ({
 
 export const notificationsPostPOST = async (
   Constants,
-  { Createdby, Notification, TeamID, TeamName, createdat },
+  { Createdby, Notification, TeamID, TeamName, date },
   handlers,
   timeout
 ) => {
@@ -7589,7 +8204,7 @@ export const notificationsPostPOST = async (
         TeamName: TeamName,
         TeamID: TeamID,
         Createdby: Createdby,
-        created_at: createdat,
+        Date: date,
       }),
       headers: cleanHeaders({
         Accept: 'application/json',
@@ -7651,7 +8266,7 @@ export const FetchNotificationsPostPOST = ({
   Notification,
   TeamID,
   TeamName,
-  createdat,
+  date,
 }) => {
   const Constants = GlobalVariables.useValues();
   const isFocused = useIsFocused();
@@ -7663,7 +8278,7 @@ export const FetchNotificationsPostPOST = ({
     error,
     mutate: refetch,
   } = useNotificationsPostPOST(
-    { Createdby, Notification, TeamID, TeamName, createdat },
+    { Createdby, Notification, TeamID, TeamName, date },
     {
       refetchInterval,
       refetchOnWindowFocus,
@@ -9207,6 +9822,70 @@ export const FetchRugbyWDLGET = ({
   return children({ loading, data, error, refetchRugbyWDL: refetch });
 };
 
+export const sampleTDDELETE = async (
+  Constants,
+  { name },
+  handlers,
+  timeout
+) => {
+  const paramsDict = {};
+  if (name !== undefined) {
+    paramsDict['Name'] = `eq.${renderParam(name)}`;
+  }
+  const url = `https://mgjrztlrnhnktfnxbkhb.supabase.co/rest/v1/SampleTD${renderQueryString(
+    paramsDict
+  )}`;
+  const controller = new AbortController();
+  let timeoutObj;
+  if (timeout) {
+    timeoutObj = setTimeout(() => {
+      const err = new Error(`Timeout after ${timeout}ms`);
+      err.__type = 'TIMEOUT';
+      controller.abort(err);
+    }, timeout);
+  }
+  try {
+    const res = await fetch(url, {
+      headers: cleanHeaders({
+        Accept: 'application/json',
+        Authorization: Constants['Authorization_Header'],
+        'Content-Type': 'application/json',
+        apiKey: Constants['Api_Key_Header'],
+      }),
+      method: 'DELETE',
+      signal: controller.signal,
+    });
+    timeoutObj && clearTimeout(timeoutObj);
+    return handleResponse(res, handlers);
+  } catch (e) {
+    if (e.__type === 'TIMEOUT') {
+      handlers.onTimeout?.();
+    } else if (timeoutObj) {
+      clearTimeout(timeoutObj);
+    }
+    throw e;
+  }
+};
+
+export const useSampleTDDELETE = (initialArgs = {}, { handlers = {} } = {}) => {
+  const queryClient = useQueryClient();
+  const Constants = GlobalVariables.useValues();
+  return useMutation(
+    args => sampleTDDELETE(Constants, { ...initialArgs, ...args }, handlers),
+    {
+      onError: (err, variables, { previousValue }) => {
+        if (previousValue) {
+          return queryClient.setQueryData('SampleTD', previousValue);
+        }
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries('SampleTD');
+        queryClient.invalidateQueries('SampleTDS');
+      },
+    }
+  );
+};
+
 export const soccerWDLGET = async (
   Constants,
   { TeamID },
@@ -9581,7 +10260,7 @@ export const FetchSquadListByTeamNameGET = ({
   });
 };
 
-export const teamListGetByUsernameGET = async (
+export const teamListGetByTeamIDGET = async (
   Constants,
   { TeamID },
   handlers,
@@ -9627,7 +10306,7 @@ export const teamListGetByUsernameGET = async (
   }
 };
 
-export const useTeamListGetByUsernameGET = (
+export const useTeamListGetByTeamIDGET = (
   args = {},
   {
     refetchInterval,
@@ -9643,7 +10322,7 @@ export const useTeamListGetByUsernameGET = (
   const Constants = GlobalVariables.useValues();
   return useQuery(
     ['TeamLists', args],
-    () => teamListGetByUsernameGET(Constants, args, handlers, timeout),
+    () => teamListGetByTeamIDGET(Constants, args, handlers, timeout),
     {
       refetchInterval,
       refetchOnWindowFocus,
@@ -9655,7 +10334,7 @@ export const useTeamListGetByUsernameGET = (
   );
 };
 
-export const FetchTeamListGetByUsernameGET = ({
+export const FetchTeamListGetByTeamIDGET = ({
   children,
   onData = () => {},
   handlers = {},
@@ -9677,7 +10356,7 @@ export const FetchTeamListGetByUsernameGET = ({
     data,
     error,
     refetch,
-  } = useTeamListGetByUsernameGET(
+  } = useTeamListGetByTeamIDGET(
     { TeamID },
     {
       refetchInterval,
@@ -9709,7 +10388,7 @@ export const FetchTeamListGetByUsernameGET = ({
     loading,
     data,
     error,
-    refetchTeamListGetByUsername: refetch,
+    refetchTeamListGetByTeamID: refetch,
   });
 };
 
@@ -11006,6 +11685,101 @@ export const useUpdateSportCodePATCH = (
   );
 };
 
+export const updateSportCode2PATCH = async (
+  Constants,
+  {
+    AccountStatus,
+    Grade,
+    Location,
+    Position,
+    Role,
+    RoleCode,
+    Sport,
+    SportCode,
+    Team,
+    TeamID,
+    Username,
+    name,
+  },
+  handlers,
+  timeout
+) => {
+  const paramsDict = {};
+  if (Username !== undefined) {
+    paramsDict['Username'] = `eq.${renderParam(Username)}`;
+  }
+  const url = `https://mgjrztlrnhnktfnxbkhb.supabase.co/rest/v1/UserList${renderQueryString(
+    paramsDict
+  )}`;
+  const controller = new AbortController();
+  let timeoutObj;
+  if (timeout) {
+    timeoutObj = setTimeout(() => {
+      const err = new Error(`Timeout after ${timeout}ms`);
+      err.__type = 'TIMEOUT';
+      controller.abort(err);
+    }, timeout);
+  }
+  try {
+    const res = await fetch(url, {
+      body: JSON.stringify({
+        Name: name,
+        Username: Username,
+        TeamID: TeamID,
+        Role: Role,
+        RoleCode: RoleCode,
+        AccountStatus: AccountStatus,
+        Position: Position,
+        Team: Team,
+        Sport: Sport,
+        SportCode: SportCode,
+        Location: Location,
+        Grade: Grade,
+      }),
+      headers: cleanHeaders({
+        Accept: 'application/json',
+        Authorization: Constants['Authorization_Header'],
+        'Content-Type': 'application/json',
+        apiKey: Constants['Api_Key_Header'],
+      }),
+      method: 'PATCH',
+      signal: controller.signal,
+    });
+    timeoutObj && clearTimeout(timeoutObj);
+    return handleResponse(res, handlers);
+  } catch (e) {
+    if (e.__type === 'TIMEOUT') {
+      handlers.onTimeout?.();
+    } else if (timeoutObj) {
+      clearTimeout(timeoutObj);
+    }
+    throw e;
+  }
+};
+
+export const useUpdateSportCode2PATCH = (
+  initialArgs = {},
+  { handlers = {} } = {}
+) => {
+  const queryClient = useQueryClient();
+  const Constants = GlobalVariables.useValues();
+  return useMutation(
+    args =>
+      updateSportCode2PATCH(Constants, { ...initialArgs, ...args }, handlers),
+    {
+      onError: (err, variables, { previousValue }) => {
+        if (previousValue) {
+          return queryClient.setQueryData('UserList', previousValue);
+        }
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries('UserList');
+        queryClient.invalidateQueries('UserLists');
+      },
+    }
+  );
+};
+
 export const userListGetGET = async (
   Constants,
   { username },
@@ -11382,6 +12156,113 @@ export const FetchUserListByTeamIDGET = ({
     }
   }, [error]);
   return children({ loading, data, error, refetchUserListByTeamID: refetch });
+};
+
+export const usersPOST = async (Constants, { username }, handlers, timeout) => {
+  const url = `https://mgjrztlrnhnktfnxbkhb.supabase.co/rest/v1/Users`;
+  const controller = new AbortController();
+  let timeoutObj;
+  if (timeout) {
+    timeoutObj = setTimeout(() => {
+      const err = new Error(`Timeout after ${timeout}ms`);
+      err.__type = 'TIMEOUT';
+      controller.abort(err);
+    }, timeout);
+  }
+  try {
+    const res = await fetch(url, {
+      body: JSON.stringify({ Username: username }),
+      headers: cleanHeaders({
+        Accept: 'application/json',
+        Authorization: Constants['Authorization_Header'],
+        'Content-Type': 'application/json',
+        apiKey: Constants['Api_Key_Header'],
+      }),
+      method: 'POST',
+      signal: controller.signal,
+    });
+    timeoutObj && clearTimeout(timeoutObj);
+    return handleResponse(res, handlers);
+  } catch (e) {
+    if (e.__type === 'TIMEOUT') {
+      handlers.onTimeout?.();
+    } else if (timeoutObj) {
+      clearTimeout(timeoutObj);
+    }
+    throw e;
+  }
+};
+
+export const useUsersPOST = (initialArgs = {}, { handlers = {} } = {}) => {
+  const queryClient = useQueryClient();
+  const Constants = GlobalVariables.useValues();
+  return useMutation(
+    args => usersPOST(Constants, { ...initialArgs, ...args }, handlers),
+    {
+      onError: (err, variables, { previousValue }) => {
+        if (previousValue) {
+          return queryClient.setQueryData('users', previousValue);
+        }
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries('user');
+        queryClient.invalidateQueries('users');
+      },
+    }
+  );
+};
+
+export const FetchUsersPOST = ({
+  children,
+  onData = () => {},
+  handlers = {},
+  refetchInterval,
+  refetchOnWindowFocus,
+  refetchOnMount,
+  refetchOnReconnect,
+  retry,
+  staleTime,
+  timeout,
+  username,
+}) => {
+  const Constants = GlobalVariables.useValues();
+  const isFocused = useIsFocused();
+  const prevIsFocused = usePrevious(isFocused);
+
+  const {
+    isLoading: loading,
+    data,
+    error,
+    mutate: refetch,
+  } = useUsersPOST(
+    { username },
+    {
+      refetchInterval,
+      refetchOnWindowFocus,
+      refetchOnMount,
+      refetchOnReconnect,
+      retry,
+      staleTime,
+      timeout,
+      handlers: { onData, ...handlers },
+    }
+  );
+
+  React.useEffect(() => {
+    if (!prevIsFocused && isFocused && refetchOnWindowFocus !== false) {
+      refetch();
+    }
+  }, [isFocused, prevIsFocused, refetchOnWindowFocus]);
+
+  React.useEffect(() => {
+    if (error) {
+      console.error(error);
+      if (error.status) {
+        console.error('Fetch error: ' + error.status + ' ' + error.statusText);
+      }
+    }
+  }, [error]);
+  return children({ loading, data, error, refetchUsers: refetch });
 };
 
 export const winDrawLossGET = async (

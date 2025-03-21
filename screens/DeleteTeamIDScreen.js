@@ -20,7 +20,7 @@ import useWindowDimensions from '../utils/useWindowDimensions';
 
 const defaultProps = { UNL: null };
 
-const ChooseTeamScreen = props => {
+const DeleteTeamIDScreen = props => {
   const { theme, navigation } = props;
   const dimensions = useWindowDimensions();
   const Constants = GlobalVariables.useValues();
@@ -33,6 +33,54 @@ const ChooseTeamScreen = props => {
       scrollable={false}
       hasTopSafeArea={false}
     >
+      <View
+        style={StyleSheet.applyWidth(
+          { alignContent: 'center', alignSelf: 'center' },
+          dimensions.width
+        )}
+      >
+        <Text
+          accessible={true}
+          selectable={false}
+          {...GlobalStyles.TextStyles(theme)['Text 2'].props}
+          style={StyleSheet.applyWidth(
+            StyleSheet.compose(
+              GlobalStyles.TextStyles(theme)['Text 2'].style,
+              theme.typography.body1,
+              {
+                color: palettes.App.NFT_Time_UI_Black,
+                fontFamily: 'Inter_700Bold',
+                fontSize: 20,
+                textAlign: 'center',
+              }
+            ),
+            dimensions.width
+          )}
+        >
+          {'Delete TeamID'}
+        </Text>
+        {/* Text 2 */}
+        <Text
+          accessible={true}
+          selectable={false}
+          {...GlobalStyles.TextStyles(theme)['Text 2'].props}
+          style={StyleSheet.applyWidth(
+            StyleSheet.compose(
+              GlobalStyles.TextStyles(theme)['Text 2'].style,
+              theme.typography.body1,
+              {
+                fontFamily: 'Inter_400Regular',
+                fontSize: 18,
+                textAlign: 'center',
+              }
+            ),
+            dimensions.width
+          )}
+        >
+          {'Please click on the TeamID you wish to Delete from your Profile'}
+        </Text>
+      </View>
+
       <SimpleStyleScrollView
         bounces={true}
         horizontal={false}
@@ -80,42 +128,10 @@ const ChooseTeamScreen = props => {
                       onPress={() => {
                         try {
                           setGlobalVariableValue({
-                            key: 'TeamID',
+                            key: 'SelectedTeamID',
                             value: flashListData?.TeamID,
                           });
-                          setGlobalVariableValue({
-                            key: 'Name',
-                            value: flashListData?.Name,
-                          });
-                          setGlobalVariableValue({
-                            key: 'HomeTeam',
-                            value: flashListData?.Team,
-                          });
-                          setGlobalVariableValue({
-                            key: 'Location',
-                            value: flashListData?.Location,
-                          });
-                          setGlobalVariableValue({
-                            key: 'Grade',
-                            value: flashListData?.Grade,
-                          });
-                          setGlobalVariableValue({
-                            key: 'Sport',
-                            value: flashListData?.Sport,
-                          });
-                          setGlobalVariableValue({
-                            key: 'Position',
-                            value: flashListData?.Position,
-                          });
-                          setGlobalVariableValue({
-                            key: 'SportValue',
-                            value: flashListData?.SportCode,
-                          });
-                          setGlobalVariableValue({
-                            key: 'AccountType',
-                            value: flashListData?.RoleCode,
-                          });
-                          navigation.navigate('HomeScreen');
+                          navigation.navigate('DeleteTeamIDConfirmScreen');
                         } catch (err) {
                           console.error(err);
                         }
@@ -197,4 +213,4 @@ const ChooseTeamScreen = props => {
   );
 };
 
-export default withTheme(ChooseTeamScreen);
+export default withTheme(DeleteTeamIDScreen);

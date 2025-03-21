@@ -9,6 +9,7 @@ import {
 } from '@draftbit/ui';
 import { Text, View } from 'react-native';
 import * as GlobalStyles from '../GlobalStyles.js';
+import Images from '../config/Images';
 import palettes from '../themes/palettes';
 import Breakpoints from '../utils/Breakpoints';
 import * as StyleSheet from '../utils/StyleSheet';
@@ -50,13 +51,11 @@ const SignUpInfoScreen = props => {
           cachePolicy={'disk'}
           contentPosition={'center'}
           resizeMode={'cover'}
-          source={imageSource(
-            'https://static.draftbit.com/images/placeholder-image.png'
-          )}
           transitionDuration={300}
           transitionEffect={'cross-dissolve'}
           transitionTiming={'ease-in-out'}
           {...GlobalStyles.ExpoImageStyles(theme)['Image (default)'].props}
+          source={imageSource(Images['shootrredesigninappimage'])}
           style={StyleSheet.applyWidth(
             GlobalStyles.ExpoImageStyles(theme)['Image (default)'].style,
             dimensions.width

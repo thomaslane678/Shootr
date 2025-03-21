@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Divider, ScreenContainer, withTheme } from '@draftbit/ui';
+import { Button, ScreenContainer, Spacer, withTheme } from '@draftbit/ui';
 import { Image, Text, View } from 'react-native';
 import * as GlobalStyles from '../GlobalStyles.js';
 import * as ShootrSupabaseDBAPIApi from '../apis/ShootrSupabaseDBAPIApi.js';
@@ -37,7 +37,7 @@ const AdvancedAnalyticsSoccerWelcomeScreen = props => {
           <Image
             resizeMode={'cover'}
             {...GlobalStyles.ImageStyles(theme)['Image 2'].props}
-            source={imageSource(Images['ShootrBigLogoTransparent'])}
+            source={imageSource(Images['shootrredesigninappimage'])}
             style={StyleSheet.applyWidth(
               StyleSheet.compose(
                 GlobalStyles.ImageStyles(theme)['Image 2'].style,
@@ -67,17 +67,6 @@ const AdvancedAnalyticsSoccerWelcomeScreen = props => {
           >
             {'Thank you for signing up!'}
           </Text>
-          <Divider
-            color={theme.colors.border.base}
-            {...GlobalStyles.DividerStyles(theme)['Divider'].props}
-            style={StyleSheet.applyWidth(
-              StyleSheet.compose(
-                GlobalStyles.DividerStyles(theme)['Divider'].style,
-                { height: 5 }
-              ),
-              dimensions.width
-            )}
-          />
           {/* Text 2 */}
           <Text
             accessible={true}
@@ -95,18 +84,9 @@ const AdvancedAnalyticsSoccerWelcomeScreen = props => {
               'You now have access to your own personal dashboard and GeoPitch tracking - best of luck!'
             }
           </Text>
+          <Spacer bottom={8} left={8} right={8} top={8} />
         </View>
-        <Divider
-          color={theme.colors.border.base}
-          {...GlobalStyles.DividerStyles(theme)['Divider'].props}
-          style={StyleSheet.applyWidth(
-            StyleSheet.compose(
-              GlobalStyles.DividerStyles(theme)['Divider'].style,
-              { height: 10 }
-            ),
-            dimensions.width
-          )}
-        />
+
         <View>
           <Button
             accessible={true}
@@ -120,7 +100,7 @@ const AdvancedAnalyticsSoccerWelcomeScreen = props => {
                       Grade: Constants['Grade'],
                       Location: Constants['Location'],
                       Position: Constants['Position'],
-                      Role: Constants['AccountStatus'],
+                      Role: 'Premium',
                       RoleCode: Constants['AccountType'],
                       Sport: Constants['Sport'],
                       SportCode: 6,
@@ -130,7 +110,7 @@ const AdvancedAnalyticsSoccerWelcomeScreen = props => {
                       name: Constants['Name'],
                     })
                   )?.json;
-                  navigation.navigate('AdvancedAnalyticsSoccerWelcomeScreen');
+                  navigation.navigate('SoccerUserProfileScreen');
                 } catch (err) {
                   console.error(err);
                 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Button,
+  ExpoImage,
   ScreenContainer,
   SimpleStyleScrollView,
   TextInput,
@@ -10,9 +11,11 @@ import { Text, View } from 'react-native';
 import * as GlobalStyles from '../GlobalStyles.js';
 import * as ShootrSupabaseDBAPIApi from '../apis/ShootrSupabaseDBAPIApi.js';
 import * as GlobalVariables from '../config/GlobalVariableContext';
+import Images from '../config/Images';
 import palettes from '../themes/palettes';
 import Breakpoints from '../utils/Breakpoints';
 import * as StyleSheet from '../utils/StyleSheet';
+import imageSource from '../utils/imageSource';
 import showAlertUtil from '../utils/showAlert';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
@@ -37,10 +40,10 @@ const AddNewTeamIDScreen = props => {
   const [styledTextFieldValue, setStyledTextFieldValue] = React.useState('');
   const [textAreaValue, setTextAreaValue] = React.useState('');
   const [textInputValue, setTextInputValue] = React.useState('');
-  const shootrSupabaseDBAPIMatchResultsPostPOST =
-    ShootrSupabaseDBAPIApi.useMatchResultsPostPOST();
   const shootrSupabaseDBAPIAddUserPOST =
     ShootrSupabaseDBAPIApi.useAddUserPOST();
+  const shootrSupabaseDBAPIMatchResultsPostPOST =
+    ShootrSupabaseDBAPIApi.useMatchResultsPostPOST();
 
   return (
     <ScreenContainer
@@ -52,6 +55,32 @@ const AddNewTeamIDScreen = props => {
         dimensions.width
       )}
     >
+      <View
+        style={StyleSheet.applyWidth(
+          { alignItems: 'center' },
+          dimensions.width
+        )}
+      >
+        <ExpoImage
+          allowDownscaling={true}
+          cachePolicy={'disk'}
+          contentPosition={'center'}
+          resizeMode={'cover'}
+          transitionDuration={300}
+          transitionEffect={'cross-dissolve'}
+          transitionTiming={'ease-in-out'}
+          {...GlobalStyles.ExpoImageStyles(theme)['Image 4'].props}
+          source={imageSource(Images['shootrredesigninappimage'])}
+          style={StyleSheet.applyWidth(
+            StyleSheet.compose(
+              GlobalStyles.ExpoImageStyles(theme)['Image 4'].style,
+              { height: 200, width: 200 }
+            ),
+            dimensions.width
+          )}
+        />
+      </View>
+
       <SimpleStyleScrollView
         bounces={true}
         horizontal={false}
@@ -572,7 +601,6 @@ const AddNewTeamIDScreen = props => {
                     Basic: Constants['AccountType'],
                     Grade: Constants['Grade'],
                     Location: Location,
-                    Player: Constants['AccountType'],
                     PlayerName: PlayerName,
                     Sport: Sport,
                     Sportcode: Constants['SportValue'],

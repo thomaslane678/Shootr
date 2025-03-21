@@ -18,6 +18,7 @@ import { Fetch } from 'react-request';
 import * as GlobalStyles from '../GlobalStyles.js';
 import * as ShootrSupabaseDBAPIApi from '../apis/ShootrSupabaseDBAPIApi.js';
 import * as GlobalVariables from '../config/GlobalVariableContext';
+import Images from '../config/Images';
 import palettes from '../themes/palettes';
 import Breakpoints from '../utils/Breakpoints';
 import * as StyleSheet from '../utils/StyleSheet';
@@ -2243,7 +2244,11 @@ const RugbyTeamStatsTheNumbersScreen = props => {
                               resizeMode={'cover'}
                               {...GlobalStyles.ImageStyles(theme)['Image 2']
                                 .props}
-                              source={imageSource(`${Constants['UserPic']}`)}
+                              source={
+                                imageSource(
+                                  Images['shootrredesigninappimage']
+                                ) ?? imageSource(`${Constants['UserPic']}`)
+                              }
                               style={StyleSheet.applyWidth(
                                 StyleSheet.compose(
                                   GlobalStyles.ImageStyles(theme)['Image 2']
@@ -2410,7 +2415,7 @@ new Chart(ctx).LineWithLine(data, {
           </View>
         </View>
       </SimpleStyleScrollView>
-      {/* Updated Menu */}
+      {/* Final Menu */}
       <View
         style={StyleSheet.applyWidth(
           {
@@ -2503,11 +2508,26 @@ new Chart(ctx).LineWithLine(data, {
               }
 
               if (Constants['SportValue'] === 1) {
-                navigation.navigate('SoccerUserProfileScreen');
+                navigation.navigate('SoccerUserProfileBasicScreen');
               } else {
               }
 
               if (Constants['SportValue'] === 3) {
+                navigation.navigate('RugbyUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 6) {
+                navigation.navigate('SoccerUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 7) {
+                navigation.navigate('GAAUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 8) {
                 navigation.navigate('RugbyUserProfileScreen');
               } else {
               }

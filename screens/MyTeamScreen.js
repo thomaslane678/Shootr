@@ -11,6 +11,7 @@ import { ActivityIndicator, Image, Text, View } from 'react-native';
 import { Fetch } from 'react-request';
 import * as ShootrSupabaseDBAPIApi from '../apis/ShootrSupabaseDBAPIApi.js';
 import * as GlobalVariables from '../config/GlobalVariableContext';
+import Images from '../config/Images';
 import palettes from '../themes/palettes';
 import Breakpoints from '../utils/Breakpoints';
 import * as StyleSheet from '../utils/StyleSheet';
@@ -140,7 +141,10 @@ const MyTeamScreen = props => {
                           {/* Profile */}
                           <Image
                             resizeMode={'cover'}
-                            source={imageSource(`${Constants['UserPic']}`)}
+                            source={
+                              imageSource(Images['shootrredesigninappimage']) ??
+                              imageSource(`${Constants['UserPic']}`)
+                            }
                             style={StyleSheet.applyWidth(
                               {
                                 alignSelf: 'center',

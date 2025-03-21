@@ -880,191 +880,6 @@ const RugbyTeamStatsPitchViewAllSeasonScreen = props => {
                             )}
                             title={'Choose Stat 1'}
                           />
-                          {/* Choose Stat & Refresh API Button 2 */}
-                          <Button
-                            accessible={true}
-                            iconPosition={'left'}
-                            onPress={() => {
-                              try {
-                                setGlobalVariableValue({
-                                  key: 'X21',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X22',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X23',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X24',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X25',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X26',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X27',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X28',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X29',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X30',
-                                  value: 1,
-                                });
-                                undefined;
-                                setGlobalVariableValue({
-                                  key: 'X32',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X33',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X34',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X35',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X36',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X37',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X38',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X39',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'X40',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y21',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y22',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y23',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y24',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y25',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y26',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y27',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y28',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y29',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y30',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y31',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y32',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y33',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y34',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y35',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y36',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y37',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y38',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y39',
-                                  value: 1,
-                                });
-                                setGlobalVariableValue({
-                                  key: 'Y40',
-                                  value: 1,
-                                });
-                                navigation.navigate('RugbyChooseStat2Screen');
-                              } catch (err) {
-                                console.error(err);
-                              }
-                            }}
-                            {...GlobalStyles.ButtonStyles(theme)['Button']
-                              .props}
-                            style={StyleSheet.applyWidth(
-                              StyleSheet.compose(
-                                GlobalStyles.ButtonStyles(theme)['Button']
-                                  .style,
-                                {
-                                  backgroundColor:
-                                    palettes.App.Communical_Yellow_Emoticons,
-                                  color: palettes.App.Peoplebit_Turquoise,
-                                  width: 100,
-                                }
-                              ),
-                              dimensions.width
-                            )}
-                            title={'Choose Stat 2'}
-                          />
                         </View>
                         {/* View 2 */}
                         <View>
@@ -1103,8 +918,6 @@ const RugbyTeamStatsPitchViewAllSeasonScreen = props => {
                             )}
                           >
                             {Constants['ChosenStat']}
-                            {'s & '}
-                            {Constants['ChosenStat2']}
                             {'s'}
                           </Text>
                         </View>
@@ -2062,38 +1875,11 @@ Bottom Goal
             />
           </View>
           <Spacer bottom={8} left={8} right={8} top={8} />
-          <Button
-            accessible={true}
-            iconPosition={'left'}
-            onPress={() => {
-              try {
-                navigation.navigate('RugbyTeamStatsPitchViewByMatchScreen');
-              } catch (err) {
-                console.error(err);
-              }
-            }}
-            {...GlobalStyles.ButtonStyles(theme)['Button'].props}
-            style={StyleSheet.applyWidth(
-              StyleSheet.compose(
-                GlobalStyles.ButtonStyles(theme)['Button'].style,
-                {
-                  backgroundColor: palettes.App.Peoplebit_Turquoise,
-                  borderRadius: 12,
-                  color: palettes.App.Communical_Yellow_Emoticons,
-                  fontFamily: 'Inter_600SemiBold',
-                  marginLeft: 40,
-                  marginRight: 40,
-                }
-              ),
-              dimensions.width
-            )}
-            title={'Pitch View By Match'}
-          />
           {/* Spacer 2 */}
           <Spacer bottom={8} left={8} right={8} top={8} />
         </View>
       </SimpleStyleScrollView>
-      {/* Updated Menu */}
+      {/* Final Menu */}
       <View
         style={StyleSheet.applyWidth(
           {
@@ -2186,11 +1972,26 @@ Bottom Goal
               }
 
               if (Constants['SportValue'] === 1) {
-                navigation.navigate('SoccerUserProfileScreen');
+                navigation.navigate('SoccerUserProfileBasicScreen');
               } else {
               }
 
               if (Constants['SportValue'] === 3) {
+                navigation.navigate('RugbyUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 6) {
+                navigation.navigate('SoccerUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 7) {
+                navigation.navigate('GAAUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 8) {
                 navigation.navigate('RugbyUserProfileScreen');
               } else {
               }

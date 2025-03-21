@@ -59,7 +59,7 @@ const SoccerPickTeam433Screen = props => {
                       Notification: 'Started Match',
                       TeamID: Constants['TeamID'],
                       TeamName: Constants['HomeTeam'],
-                      createdat: '19:18:55',
+                      date: new Date(),
                     })
                   )?.json;
                   navigation.navigate('ChooseGoalScreen');

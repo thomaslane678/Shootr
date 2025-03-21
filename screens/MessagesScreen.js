@@ -7,7 +7,6 @@ import {
   SimpleStyleKeyboardAwareScrollView,
   Spacer,
   TextInput,
-  Touchable,
   withTheme,
 } from '@draftbit/ui';
 import { useIsFocused } from '@react-navigation/native';
@@ -22,7 +21,7 @@ import * as StyleSheet from '../utils/StyleSheet';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
 const MessagesScreen = props => {
-  const { theme, navigation } = props;
+  const { theme } = props;
   const dimensions = useWindowDimensions();
   const Constants = GlobalVariables.useValues();
   const Variables = Constants;
@@ -339,7 +338,7 @@ const MessagesScreen = props => {
                     Notification: 'New Message',
                     TeamID: Constants['TeamID'],
                     TeamName: Constants['HomeTeam'],
-                    createdat: '19:18:55',
+                    date: new Date(),
                   })
                 )?.json;
               } catch (err) {
@@ -352,133 +351,6 @@ const MessagesScreen = props => {
           color={palettes.App.Communical_Yellow_Emoticons}
           icon={'Feather/send'}
         />
-      </View>
-      {/* Updated Menu */}
-      <View
-        style={StyleSheet.applyWidth(
-          {
-            alignItems: 'center',
-            backgroundColor: palettes.App.Peoplebit_Turquoise,
-            borderTopLeftRadius: 32,
-            borderTopRightRadius: 32,
-            flexDirection: 'row',
-            height: 117,
-            justifyContent: 'space-between',
-            paddingBottom: 20,
-            paddingLeft: 30,
-            paddingRight: 30,
-          },
-          dimensions.width
-        )}
-      >
-        {/* Team Tab */}
-        <Touchable
-          onPress={() => {
-            try {
-              navigation.navigate('TeamHomeScreen');
-            } catch (err) {
-              console.error(err);
-            }
-          }}
-          activeOpacity={0.8}
-          disabledOpacity={0.8}
-          style={StyleSheet.applyWidth(
-            { borderColor: palettes.App.Communical_Yellow_Emoticons },
-            dimensions.width
-          )}
-        >
-          <View
-            style={StyleSheet.applyWidth(
-              {
-                alignItems: 'center',
-                height: 48,
-                justifyContent: 'center',
-                width: 48,
-              },
-              dimensions.width
-            )}
-          >
-            <Icon
-              size={24}
-              color={palettes.App.Communical_Yellow_Emoticons}
-              name={'MaterialIcons/sports-baseball'}
-            />
-          </View>
-        </Touchable>
-        {/* Home Tab */}
-        <Touchable
-          onPress={() => {
-            try {
-              navigation.navigate('HomeScreen');
-            } catch (err) {
-              console.error(err);
-            }
-          }}
-          activeOpacity={0.8}
-          disabledOpacity={0.8}
-        >
-          <View
-            style={StyleSheet.applyWidth(
-              {
-                alignItems: 'center',
-                height: 48,
-                justifyContent: 'center',
-                width: 48,
-              },
-              dimensions.width
-            )}
-          >
-            {/* Home Icon */}
-            <Icon
-              size={24}
-              color={palettes.App.Communical_Yellow_Emoticons}
-              name={'Entypo/home'}
-            />
-          </View>
-        </Touchable>
-        {/* Profile Tab */}
-        <Touchable
-          onPress={() => {
-            try {
-              if (Constants['SportValue'] === 2) {
-                navigation.navigate('GAAUserProfileBasicScreen');
-              } else {
-              }
-
-              if (Constants['SportValue'] === 1) {
-                navigation.navigate('SoccerUserProfileScreen');
-              } else {
-              }
-
-              if (Constants['SportValue'] === 3) {
-                navigation.navigate('RugbyUserProfileScreen');
-              } else {
-              }
-            } catch (err) {
-              console.error(err);
-            }
-          }}
-          activeOpacity={0.8}
-          disabledOpacity={0.8}
-        >
-          <View
-            style={StyleSheet.applyWidth(
-              {
-                alignItems: 'center',
-                height: 48,
-                justifyContent: 'center',
-                width: 48,
-              },
-              dimensions.width
-            )}
-          >
-            <Icon
-              size={24}
-              color={palettes.App.Communical_Yellow_Emoticons}
-              name={'AntDesign/user'}
-            />
-          </View>
-        </Touchable>
       </View>
     </ScreenContainer>
   );

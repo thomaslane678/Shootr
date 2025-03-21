@@ -41,7 +41,7 @@ const AddTeamChooseSportScreen = props => {
           transitionEffect={'cross-dissolve'}
           transitionTiming={'ease-in-out'}
           {...GlobalStyles.ExpoImageStyles(theme)['Image (default)'].props}
-          source={imageSource(Images['ShootrBigLogoTransparent'])}
+          source={imageSource(Images['shootrredesigninappimage'])}
           style={StyleSheet.applyWidth(
             StyleSheet.compose(
               GlobalStyles.ExpoImageStyles(theme)['Image (default)'].style,
@@ -54,6 +54,8 @@ const AddTeamChooseSportScreen = props => {
       <Spacer bottom={8} left={8} right={8} top={8} />
       {/* View 3 */}
       <View>
+        {/* Spacer 2 */}
+        <Spacer bottom={8} left={8} right={8} top={8} />
         <Text
           accessible={true}
           selectable={false}

@@ -49,7 +49,7 @@ const AdvancedAnalyticsSignUpScreen = props => {
           transitionEffect={'cross-dissolve'}
           transitionTiming={'ease-in-out'}
           {...GlobalStyles.ExpoImageStyles(theme)['Image (default)'].props}
-          source={imageSource(Images['ShootrBigLogoTransparent'])}
+          source={imageSource(Images['shootrredesigninappimage'])}
           style={StyleSheet.applyWidth(
             GlobalStyles.ExpoImageStyles(theme)['Image (default)'].style,
             dimensions.width
@@ -182,7 +182,7 @@ const AdvancedAnalyticsSignUpScreen = props => {
           <Spacer bottom={8} left={8} right={8} top={8} />
         </View>
       </SimpleStyleScrollView>
-      {/* Updated Menu */}
+      {/* Final Menu */}
       <View
         style={StyleSheet.applyWidth(
           {
@@ -275,11 +275,26 @@ const AdvancedAnalyticsSignUpScreen = props => {
               }
 
               if (Constants['SportValue'] === 1) {
-                navigation.navigate('SoccerUserProfileScreen');
+                navigation.navigate('SoccerUserProfileBasicScreen');
               } else {
               }
 
               if (Constants['SportValue'] === 3) {
+                navigation.navigate('RugbyUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 6) {
+                navigation.navigate('SoccerUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 7) {
+                navigation.navigate('GAAUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 8) {
                 navigation.navigate('RugbyUserProfileScreen');
               } else {
               }

@@ -2,9 +2,11 @@ import React from 'react';
 import {
   Button,
   Divider,
+  Icon,
   ScreenContainer,
   SimpleStyleScrollView,
   Spacer,
+  Touchable,
   WebView,
   withTheme,
 } from '@draftbit/ui';
@@ -152,7 +154,7 @@ const SoccerAdvancedAnalyticsAllSeasonScreen = props => {
             dimensions.width
           )}
         >
-          {'Team Dashboard'}
+          {'Advanced Analytics Dashboard'}
         </Text>
 
         <View
@@ -171,7 +173,15 @@ const SoccerAdvancedAnalyticsAllSeasonScreen = props => {
             iconPosition={'left'}
             onPress={() => {
               try {
-                navigation.navigate('SoccerTeamStatsTheNumbersScreen');
+                if (Constants['SportValue'] === 6) {
+                  navigation.navigate('SoccerUserProfileScreen');
+                } else {
+                }
+
+                if (Constants['SportValue'] === 1) {
+                  navigation.navigate('SoccerUserProfileBasicScreen');
+                } else {
+                }
               } catch (err) {
                 console.error(err);
               }
@@ -198,7 +208,7 @@ const SoccerAdvancedAnalyticsAllSeasonScreen = props => {
             iconPosition={'left'}
             onPress={() => {
               try {
-                navigation.navigate('SoccerTeamStatsPitchViewAllSeasonScreen');
+                navigation.navigate('SoccerAdvancedAnalyticsAllSeasonScreen');
               } catch (err) {
                 console.error(err);
               }
@@ -225,7 +235,7 @@ const SoccerAdvancedAnalyticsAllSeasonScreen = props => {
             iconPosition={'left'}
             onPress={() => {
               try {
-                navigation.navigate('SoccerTeamStatsPitchViewByMatchScreen');
+                navigation.navigate('SoccerAdvancedAnalyticsByMatchScreen');
               } catch (err) {
                 console.error(err);
               }
@@ -528,190 +538,7 @@ const SoccerAdvancedAnalyticsAllSeasonScreen = props => {
                       ),
                       dimensions.width
                     )}
-                    title={'Choose Stat 1'}
-                  />
-                  {/* Choose Stat & Refresh API Button 2 */}
-                  <Button
-                    accessible={true}
-                    iconPosition={'left'}
-                    onPress={() => {
-                      try {
-                        setGlobalVariableValue({
-                          key: 'X21',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X22',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X23',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X24',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X25',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X26',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X27',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X28',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X29',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X30',
-                          value: 1,
-                        });
-                        undefined;
-                        setGlobalVariableValue({
-                          key: 'X32',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X33',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X34',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X35',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X36',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X37',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X38',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X39',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'X40',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y21',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y22',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y23',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y24',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y25',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y26',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y27',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y28',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y29',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y30',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y31',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y32',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y33',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y34',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y35',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y36',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y37',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y38',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y39',
-                          value: 1,
-                        });
-                        setGlobalVariableValue({
-                          key: 'Y40',
-                          value: 1,
-                        });
-                        navigation.navigate('GAAChooseStat2Screen');
-                      } catch (err) {
-                        console.error(err);
-                      }
-                    }}
-                    {...GlobalStyles.ButtonStyles(theme)['Button'].props}
-                    style={StyleSheet.applyWidth(
-                      StyleSheet.compose(
-                        GlobalStyles.ButtonStyles(theme)['Button'].style,
-                        {
-                          backgroundColor:
-                            palettes.App.Communical_Yellow_Emoticons,
-                          color: palettes.App.Peoplebit_Turquoise,
-                          width: 100,
-                        }
-                      ),
-                      dimensions.width
-                    )}
-                    title={'Choose Stat 2'}
+                    title={'Choose Stat'}
                   />
                 </View>
                 {/* View 2 */}
@@ -748,8 +575,6 @@ const SoccerAdvancedAnalyticsAllSeasonScreen = props => {
                     )}
                   >
                     {Constants['ChosenStat']}
-                    {'s & '}
-                    {Constants['ChosenStat2']}
                     {'s'}
                   </Text>
                 </View>
@@ -1742,149 +1567,149 @@ halfway
             />
           </View>
         </View>
-        {/* Line Chart */}
-        <View style={StyleSheet.applyWidth({ height: 300 }, dimensions.width)}>
-          <Spacer bottom={8} left={8} right={8} top={8} />
-          <View>
-            <Text
-              accessible={true}
-              selectable={false}
-              {...GlobalStyles.TextStyles(theme)['Text'].props}
-              style={StyleSheet.applyWidth(
-                StyleSheet.compose(
-                  GlobalStyles.TextStyles(theme)['Text'].style,
-                  { alignSelf: 'center', fontFamily: 'Inter_600SemiBold' }
-                ),
-                dimensions.width
-              )}
-            >
-              {'Match by Match Summary'}
-            </Text>
-            <Spacer bottom={8} left={8} right={8} top={8} />
-          </View>
-          {/* Choose Stat Button */}
-          <>
-            {!Constants['Stat_Options'] ? null : (
-              <View
-                style={StyleSheet.applyWidth(
-                  { flexDirection: 'row', justifyContent: 'space-around' },
-                  dimensions.width
-                )}
-              >
-                {/* View 2 */}
-                <View>
-                  <Text
-                    accessible={true}
-                    selectable={false}
-                    {...GlobalStyles.TextStyles(theme)['Text'].props}
-                    style={StyleSheet.applyWidth(
-                      StyleSheet.compose(
-                        GlobalStyles.TextStyles(theme)['Text'].style,
-                        { fontFamily: 'Inter_600SemiBold', fontSize: 16 }
-                      ),
-                      dimensions.width
-                    )}
-                  >
-                    {'Currently Showing:'}
-                  </Text>
-                  {/* Text 2 */}
-                  <Text
-                    accessible={true}
-                    selectable={false}
-                    {...GlobalStyles.TextStyles(theme)['Text'].props}
-                    style={StyleSheet.applyWidth(
-                      StyleSheet.compose(
-                        GlobalStyles.TextStyles(theme)['Text'].style,
-                        {
-                          alignSelf: 'center',
-                          fontFamily: 'Inter_600SemiBold',
-                          fontSize: 18,
-                        }
-                      ),
-                      dimensions.width
-                    )}
-                  >
-                    {Constants['ChosenStat']}
-                  </Text>
-                </View>
-              </View>
-            )}
-          </>
+      </SimpleStyleScrollView>
+      {/* Final Menu */}
+      <View
+        style={StyleSheet.applyWidth(
+          {
+            alignItems: 'center',
+            backgroundColor: palettes.App.Peoplebit_Turquoise,
+            borderTopLeftRadius: 32,
+            borderTopRightRadius: 32,
+            flexDirection: 'row',
+            height: 117,
+            justifyContent: 'space-between',
+            paddingBottom: 20,
+            paddingLeft: 30,
+            paddingRight: 30,
+          },
+          dimensions.width
+        )}
+      >
+        {/* Team Tab */}
+        <Touchable
+          onPress={() => {
+            try {
+              navigation.navigate('TeamHomeScreen');
+            } catch (err) {
+              console.error(err);
+            }
+          }}
+          activeOpacity={0.8}
+          disabledOpacity={0.8}
+          style={StyleSheet.applyWidth(
+            { borderColor: palettes.App.Communical_Yellow_Emoticons },
+            dimensions.width
+          )}
+        >
           <View
-            style={StyleSheet.applyWidth({ height: '100%' }, dimensions.width)}
+            style={StyleSheet.applyWidth(
+              {
+                alignItems: 'center',
+                height: 48,
+                justifyContent: 'center',
+                width: 48,
+              },
+              dimensions.width
+            )}
           >
-            <Spacer bottom={8} left={8} right={8} top={8} />
-            <WebView
-              allowFileAccessFromFileURLs={false}
-              allowUniversalAccessFromFileURLs={false}
-              cacheEnabled={true}
-              incognito={false}
-              javaScriptCanOpenWindowsAutomatically={false}
-              javaScriptEnabled={true}
-              mediaPlaybackRequiresUserAction={false}
-              showsHorizontalScrollIndicator={true}
-              showsVerticalScrollIndicator={true}
-              startInLoadingState={false}
-              {...GlobalStyles.WebViewStyles(theme)['HTML View'].props}
-              source={{
-                html: `<html>
-   <head> 
-      <meta name="viewport" content="width=device-width, initial-scale=1"> 
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.js"></script> 
-      <script type="text/javascript" src="https://rawgit.com/nnnick/Chart.js/v1.0.2/Chart.min.js"></script> 
-      <script type="text/javascript">
-    $(window).load(function(){// w  w w.  ja  v  a2  s .co m
-var data = {
-    labels: ["${Constants['AAOpp1']}", "${Constants['AAOpp2']}", "${Constants['AAOpp3']}", "${Constants['AAOpp4']}", "${Constants['AAOpp5']}"],
-    datasets: [{
-        data: [${Constants['AATot1']}, ${Constants['AATot2']}, ${Constants['AATot3']}, ${Constants['AATot4']}, ${Constants['AATot5']}]
-    }]
-};
-var ctx = document.getElementById("LineWithLine").getContext("2d");
-Chart.types.Line.extend({
-    name: "LineWithLine",
-    initialize: function () {
-        Chart.types.Line.prototype.initialize.apply(this, arguments);
-    },
-    draw: function () {
-        Chart.types.Line.prototype.draw.apply(this, arguments);
-        var point = this.datasets[0].points[this.options.lineAtIndex]
-        var scale = this.scale
-        console.log(this);
-        // draw line
-        this.chart.ctx.beginPath();
-        this.chart.ctx.moveTo(scale.startPoint+12, point.y);
-        this.chart.ctx.strokeStyle = '#ff0000';
-        this.chart.ctx.lineTo(this.chart.width, point.y);
-        this.chart.ctx.stroke();
-        // write TODAY
-        this.chart.ctx.textAlign = 'center';
-        this.chart.ctx.fillText(" ", scale.startPoint + 35, point.y+10);
-    }
-});
-new Chart(ctx).LineWithLine(data, {
-    datasetFill : false,
-    lineAtIndex: 2
-});
-    });
-
-      </script> 
-   </head> 
-   <body> 
-      <div> 
-         <canvas id="LineWithLine" width="350" height="200"></canvas> 
-      </div>  
-   </body>
-</html`,
-              }}
-              style={StyleSheet.applyWidth(
-                GlobalStyles.WebViewStyles(theme)['HTML View'].style,
-                dimensions.width
-              )}
+            <Icon
+              size={24}
+              color={palettes.App.Communical_Yellow_Emoticons}
+              name={'MaterialIcons/sports-baseball'}
             />
           </View>
-        </View>
-      </SimpleStyleScrollView>
+        </Touchable>
+        {/* Home Tab */}
+        <Touchable
+          onPress={() => {
+            try {
+              navigation.navigate('HomeScreen');
+            } catch (err) {
+              console.error(err);
+            }
+          }}
+          activeOpacity={0.8}
+          disabledOpacity={0.8}
+        >
+          <View
+            style={StyleSheet.applyWidth(
+              {
+                alignItems: 'center',
+                height: 48,
+                justifyContent: 'center',
+                width: 48,
+              },
+              dimensions.width
+            )}
+          >
+            {/* Home Icon */}
+            <Icon
+              size={24}
+              color={palettes.App.Communical_Yellow_Emoticons}
+              name={'Entypo/home'}
+            />
+          </View>
+        </Touchable>
+        {/* Profile Tab */}
+        <Touchable
+          onPress={() => {
+            try {
+              if (Constants['SportValue'] === 2) {
+                navigation.navigate('GAAUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 1) {
+                navigation.navigate('SoccerUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 3) {
+                navigation.navigate('RugbyUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 6) {
+                navigation.navigate('SoccerUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 7) {
+                navigation.navigate('GAAUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 8) {
+                navigation.navigate('RugbyUserProfileScreen');
+              } else {
+              }
+            } catch (err) {
+              console.error(err);
+            }
+          }}
+          activeOpacity={0.8}
+          disabledOpacity={0.8}
+        >
+          <View
+            style={StyleSheet.applyWidth(
+              {
+                alignItems: 'center',
+                height: 48,
+                justifyContent: 'center',
+                width: 48,
+              },
+              dimensions.width
+            )}
+          >
+            <Icon
+              size={24}
+              color={palettes.App.Communical_Yellow_Emoticons}
+              name={'AntDesign/user'}
+            />
+          </View>
+        </Touchable>
+      </View>
     </ScreenContainer>
   );
 };

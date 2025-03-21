@@ -210,14 +210,20 @@ const FixtureListScreen = props => {
                             {
                               alignItems: 'center',
                               flexDirection: 'row',
-                              justifyContent: 'space-between',
+                              justifyContent: 'space-around',
                             },
                             dimensions.width
                           )}
                         >
                           <View
                             style={StyleSheet.applyWidth(
-                              { alignItems: 'center', flexDirection: 'row' },
+                              {
+                                alignContent: 'center',
+                                alignItems: 'center',
+                                alignSelf: 'center',
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                              },
                               dimensions.width
                             )}
                           >
@@ -281,77 +287,149 @@ const FixtureListScreen = props => {
                             >
                               {listData?.Date}
                             </Text>
-                            <Button
-                              accessible={true}
-                              iconPosition={'left'}
-                              onPress={() => {
-                                try {
-                                  setGlobalVariableValue({
-                                    key: 'Opposition',
-                                    value: listData?.Opposition,
-                                  });
-                                  setGlobalVariableValue({
-                                    key: 'MatchID',
-                                    value:
-                                      Constants['HomeTeam'] +
-                                      listData?.Opposition +
-                                      listData?.Date,
-                                  });
-                                  setGlobalVariableValue({
-                                    key: 'MatchType',
-                                    value: listData?.MatchType,
-                                  });
-                                  setGlobalVariableValue({
-                                    key: 'Venue',
-                                    value: listData?.Location,
-                                  });
-                                  if (Constants['SportValue'] === 2) {
-                                    navigation.navigate('GAATeamListScreen');
-                                  } else {
-                                  }
-
-                                  if (Constants['SportValue'] === 1) {
-                                    navigation.navigate(
-                                      'SoccerChooseYourFormationScreen'
-                                    );
-                                  } else {
-                                  }
-
-                                  if (Constants['SportValue'] === 3) {
-                                    navigation.navigate('RugbyTeamListScreen');
-                                  } else {
-                                  }
-                                } catch (err) {
-                                  console.error(err);
-                                }
-                              }}
-                              {...GlobalStyles.ButtonStyles(theme)['Button']
-                                .props}
-                              style={StyleSheet.applyWidth(
-                                StyleSheet.compose(
-                                  GlobalStyles.ButtonStyles(theme)['Button']
-                                    .style,
-                                  {
-                                    backgroundColor:
-                                      palettes.App.Communical_Yellow_Emoticons,
-                                    color: palettes.App.Peoplebit_Turquoise,
-                                    marginLeft: 10,
-                                    position: 'relative',
-                                  }
-                                ),
-                                dimensions.width
-                              )}
-                              title={'Start Match'}
-                            />
                           </View>
                         </View>
+                        <Spacer bottom={8} left={8} right={8} top={8} />
+                        {/* View 2 */}
+                        <View
+                          style={StyleSheet.applyWidth(
+                            {
+                              alignItems: 'center',
+                              flexDirection: 'row',
+                              justifyContent: 'space-between',
+                            },
+                            dimensions.width
+                          )}
+                        >
+                          <>
+                            {!(Constants['AccountType'] === 101) ? null : (
+                              <Button
+                                accessible={true}
+                                iconPosition={'left'}
+                                onPress={() => {
+                                  try {
+                                    setGlobalVariableValue({
+                                      key: 'Opposition',
+                                      value: listData?.Opposition,
+                                    });
+                                    setGlobalVariableValue({
+                                      key: 'MatchID',
+                                      value: listData?.FixtureID,
+                                    });
+                                    setGlobalVariableValue({
+                                      key: 'MatchType',
+                                      value: listData?.MatchType,
+                                    });
+                                    setGlobalVariableValue({
+                                      key: 'Venue',
+                                      value: listData?.Location,
+                                    });
+                                    navigation.navigate('DeleteMatchScreen');
+                                  } catch (err) {
+                                    console.error(err);
+                                  }
+                                }}
+                                {...GlobalStyles.ButtonStyles(theme)['Button']
+                                  .props}
+                                style={StyleSheet.applyWidth(
+                                  StyleSheet.compose(
+                                    GlobalStyles.ButtonStyles(theme)['Button']
+                                      .style,
+                                    {
+                                      backgroundColor:
+                                        palettes.App.NFT_TIME_Red,
+                                      color: palettes.App.NFT_White_v2,
+                                      position: 'relative',
+                                    }
+                                  ),
+                                  dimensions.width
+                                )}
+                                title={'Delete Match'}
+                              />
+                            )}
+                          </>
+                          {/* Button 2 */}
+                          <Button
+                            accessible={true}
+                            iconPosition={'left'}
+                            onPress={() => {
+                              try {
+                                setGlobalVariableValue({
+                                  key: 'Opposition',
+                                  value: listData?.Opposition,
+                                });
+                                setGlobalVariableValue({
+                                  key: 'MatchID',
+                                  value:
+                                    Constants['HomeTeam'] +
+                                    listData?.Opposition +
+                                    listData?.Date,
+                                });
+                                setGlobalVariableValue({
+                                  key: 'MatchType',
+                                  value: listData?.MatchType,
+                                });
+                                setGlobalVariableValue({
+                                  key: 'Venue',
+                                  value: listData?.Location,
+                                });
+                                if (Constants['SportValue'] === 2) {
+                                  navigation.navigate('GAATeamListScreen');
+                                } else {
+                                }
+
+                                if (Constants['SportValue'] === 7) {
+                                  navigation.navigate('GAATeamListScreen');
+                                } else {
+                                }
+
+                                if (Constants['SportValue'] === 1) {
+                                  navigation.navigate(
+                                    'SoccerChooseYourFormationScreen'
+                                  );
+                                } else {
+                                }
+
+                                if (Constants['SportValue'] === 6) {
+                                  navigation.navigate(
+                                    'SoccerChooseYourFormationScreen'
+                                  );
+                                } else {
+                                }
+
+                                if (Constants['SportValue'] === 3) {
+                                  navigation.navigate('RugbyTeamListScreen');
+                                } else {
+                                }
+
+                                if (Constants['SportValue'] === 8) {
+                                  navigation.navigate('RugbyTeamListScreen');
+                                } else {
+                                }
+                              } catch (err) {
+                                console.error(err);
+                              }
+                            }}
+                            {...GlobalStyles.ButtonStyles(theme)['Button']
+                              .props}
+                            style={StyleSheet.applyWidth(
+                              StyleSheet.compose(
+                                GlobalStyles.ButtonStyles(theme)['Button']
+                                  .style,
+                                {
+                                  backgroundColor:
+                                    palettes.App.Communical_Yellow_Emoticons,
+                                  color: palettes.App.Peoplebit_Turquoise,
+                                  marginLeft: 10,
+                                  position: 'relative',
+                                }
+                              ),
+                              dimensions.width
+                            )}
+                            title={'Start Match'}
+                          />
+                        </View>
                       </Surface>
-                      <View
-                        style={StyleSheet.applyWidth(
-                          { borderRadius: 12 },
-                          dimensions.width
-                        )}
-                      />
                     </Touchable>
                     <Spacer left={8} right={8} bottom={12} top={12} />
                   </>

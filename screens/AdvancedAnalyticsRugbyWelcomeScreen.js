@@ -37,7 +37,7 @@ const AdvancedAnalyticsRugbyWelcomeScreen = props => {
           <Image
             resizeMode={'cover'}
             {...GlobalStyles.ImageStyles(theme)['Image 2'].props}
-            source={imageSource(Images['ShootrBigLogoTransparent'])}
+            source={imageSource(Images['shootrredesigninappimage'])}
             style={StyleSheet.applyWidth(
               StyleSheet.compose(
                 GlobalStyles.ImageStyles(theme)['Image 2'].style,
@@ -120,7 +120,7 @@ const AdvancedAnalyticsRugbyWelcomeScreen = props => {
                       Grade: Constants['Grade'],
                       Location: Constants['Location'],
                       Position: Constants['Position'],
-                      Role: Constants['AccountStatus'],
+                      Role: 'Premium',
                       RoleCode: Constants['AccountType'],
                       Sport: Constants['Sport'],
                       SportCode: 8,

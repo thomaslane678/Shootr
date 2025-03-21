@@ -18,6 +18,7 @@ import { Fetch } from 'react-request';
 import * as GlobalStyles from '../GlobalStyles.js';
 import * as ShootrSupabaseDBAPIApi from '../apis/ShootrSupabaseDBAPIApi.js';
 import * as GlobalVariables from '../config/GlobalVariableContext';
+import Images from '../config/Images';
 import palettes from '../themes/palettes';
 import Breakpoints from '../utils/Breakpoints';
 import * as StyleSheet from '../utils/StyleSheet';
@@ -73,7 +74,10 @@ const HomeScreen = props => {
               transitionDuration={300}
               transitionEffect={'cross-dissolve'}
               transitionTiming={'ease-in-out'}
-              source={imageSource(`${Constants['UserPic']}`)}
+              source={
+                imageSource(Images['shootrredesigninappimage']) ??
+                imageSource(`${Constants['UserPic']}`)
+              }
               style={StyleSheet.applyWidth(
                 { height: 50, width: 50 },
                 dimensions.width
@@ -84,10 +88,10 @@ const HomeScreen = props => {
           <View
             style={StyleSheet.applyWidth({ marginLeft: 10 }, dimensions.width)}
           >
-            <ShootrSupabaseDBAPIApi.FetchTeamListGetByUsernameGET
+            <ShootrSupabaseDBAPIApi.FetchTeamListGetByTeamIDGET
               TeamID={Constants['TeamID']}
             >
-              {({ loading, error, data, refetchTeamListGetByUsername }) => {
+              {({ loading, error, data, refetchTeamListGetByTeamID }) => {
                 const fetchData = data?.json;
                 if (loading) {
                   return <ActivityIndicator />;
@@ -161,7 +165,7 @@ const HomeScreen = props => {
                   />
                 );
               }}
-            </ShootrSupabaseDBAPIApi.FetchTeamListGetByUsernameGET>
+            </ShootrSupabaseDBAPIApi.FetchTeamListGetByTeamIDGET>
           </View>
         </View>
 
@@ -656,7 +660,7 @@ const HomeScreen = props => {
           </ShootrSupabaseDBAPIApi.FetchNotificationsGetByTeamIDGET>
         </View>
       </SimpleStyleScrollView>
-      {/* Updated Menu */}
+      {/* Final Menu */}
       <View
         style={StyleSheet.applyWidth(
           {

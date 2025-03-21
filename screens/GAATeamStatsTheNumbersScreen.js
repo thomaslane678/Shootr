@@ -8,6 +8,7 @@ import {
   SimpleStyleFlatList,
   SimpleStyleScrollView,
   Spacer,
+  Touchable,
   WebView,
   withTheme,
 } from '@draftbit/ui';
@@ -17,6 +18,7 @@ import { Fetch } from 'react-request';
 import * as GlobalStyles from '../GlobalStyles.js';
 import * as ShootrSupabaseDBAPIApi from '../apis/ShootrSupabaseDBAPIApi.js';
 import * as GlobalVariables from '../config/GlobalVariableContext';
+import Images from '../config/Images';
 import palettes from '../themes/palettes';
 import Breakpoints from '../utils/Breakpoints';
 import * as StyleSheet from '../utils/StyleSheet';
@@ -2249,7 +2251,11 @@ const GAATeamStatsTheNumbersScreen = props => {
                               resizeMode={'cover'}
                               {...GlobalStyles.ImageStyles(theme)['Image 2']
                                 .props}
-                              source={imageSource(`${Constants['UserPic']}`)}
+                              source={
+                                imageSource(
+                                  Images['shootrredesigninappimage']
+                                ) ?? imageSource(`${Constants['UserPic']}`)
+                              }
                               style={StyleSheet.applyWidth(
                                 StyleSheet.compose(
                                   GlobalStyles.ImageStyles(theme)['Image 2']
@@ -2318,105 +2324,149 @@ const GAATeamStatsTheNumbersScreen = props => {
             }}
           </ShootrSupabaseDBAPIApi.FetchPlayerSeasonStatsByTeam$ActionGET>
         </View>
-        {/* Line Chart */}
-        <View style={StyleSheet.applyWidth({ height: 300 }, dimensions.width)}>
-          <View>
-            {/* Spacer 2 */}
-            <Spacer bottom={8} left={8} right={8} top={8} />
-            <Text
-              accessible={true}
-              selectable={false}
-              {...GlobalStyles.TextStyles(theme)['Text'].props}
-              style={StyleSheet.applyWidth(
-                StyleSheet.compose(
-                  GlobalStyles.TextStyles(theme)['Text'].style,
-                  { alignSelf: 'center', fontFamily: 'Inter_600SemiBold' }
-                ),
-                dimensions.width
-              )}
-            >
-              {'Last Five Matches for: '}
-              {Constants['ChosenStat']}
-              {'s'}
-            </Text>
-            <Spacer bottom={8} left={8} right={8} top={8} />
-          </View>
-
+      </SimpleStyleScrollView>
+      {/* Final Menu */}
+      <View
+        style={StyleSheet.applyWidth(
+          {
+            alignItems: 'center',
+            backgroundColor: palettes.App.Peoplebit_Turquoise,
+            borderTopLeftRadius: 32,
+            borderTopRightRadius: 32,
+            flexDirection: 'row',
+            height: 117,
+            justifyContent: 'space-between',
+            paddingBottom: 20,
+            paddingLeft: 30,
+            paddingRight: 30,
+          },
+          dimensions.width
+        )}
+      >
+        {/* Team Tab */}
+        <Touchable
+          onPress={() => {
+            try {
+              navigation.navigate('TeamHomeScreen');
+            } catch (err) {
+              console.error(err);
+            }
+          }}
+          activeOpacity={0.8}
+          disabledOpacity={0.8}
+          style={StyleSheet.applyWidth(
+            { borderColor: palettes.App.Communical_Yellow_Emoticons },
+            dimensions.width
+          )}
+        >
           <View
-            style={StyleSheet.applyWidth({ height: '100%' }, dimensions.width)}
+            style={StyleSheet.applyWidth(
+              {
+                alignItems: 'center',
+                height: 48,
+                justifyContent: 'center',
+                width: 48,
+              },
+              dimensions.width
+            )}
           >
-            <Spacer bottom={8} left={8} right={8} top={8} />
-            <WebView
-              allowFileAccessFromFileURLs={false}
-              allowUniversalAccessFromFileURLs={false}
-              cacheEnabled={true}
-              incognito={false}
-              javaScriptCanOpenWindowsAutomatically={false}
-              javaScriptEnabled={true}
-              mediaPlaybackRequiresUserAction={false}
-              showsHorizontalScrollIndicator={true}
-              showsVerticalScrollIndicator={true}
-              startInLoadingState={false}
-              {...GlobalStyles.WebViewStyles(theme)['HTML View'].props}
-              source={{
-                html: `<html>
-   <head> 
-      <meta name="viewport" content="width=device-width, initial-scale=1"> 
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.js"></script> 
-      <script type="text/javascript" src="https://rawgit.com/nnnick/Chart.js/v1.0.2/Chart.min.js"></script> 
-      <script type="text/javascript">
-    $(window).load(function(){// w  w w.  ja  v  a2  s .co m
-var data = {
-    labels: ["${Constants['DrilldownOpposition1']}", "${Constants['DrilldownOpposition2']}", "${Constants['DrilldownOpposition3']}", "${Constants['DrilldownOpposition4']}", "${Constants['DrilldownOpposition5']}"],
-    datasets: [{
-        data: [${Constants['DrilldownStat1Total']}, ${Constants['DrilldownStat2Total']}, ${Constants['DrilldownStat3LG']}, ${Constants['DrilldownStat4LG']}, ${Constants['DrilldownStat5LG']}]
-    }]
-};
-var ctx = document.getElementById("LineWithLine").getContext("2d");
-Chart.types.Line.extend({
-    name: "LineWithLine",
-    initialize: function () {
-        Chart.types.Line.prototype.initialize.apply(this, arguments);
-    },
-    draw: function () {
-        Chart.types.Line.prototype.draw.apply(this, arguments);
-        var point = this.datasets[0].points[this.options.lineAtIndex]
-        var scale = this.scale
-        console.log(this);
-        // draw line
-        this.chart.ctx.beginPath();
-        this.chart.ctx.moveTo(scale.startPoint+12, point.y);
-        this.chart.ctx.strokeStyle = '#ff0000';
-        this.chart.ctx.lineTo(this.chart.width, point.y);
-        this.chart.ctx.stroke();
-        // write TODAY
-        this.chart.ctx.textAlign = 'center';
-        this.chart.ctx.fillText(" ", scale.startPoint + 35, point.y+10);
-    }
-});
-new Chart(ctx).LineWithLine(data, {
-    datasetFill : false,
-    lineAtIndex: 2
-});
-    });
-
-      </script> 
-   </head> 
-   <body> 
-      <div> 
-         <canvas id="LineWithLine" width="350" height="200"></canvas> 
-      </div>  
-   </body>
-</html`,
-              }}
-              style={StyleSheet.applyWidth(
-                GlobalStyles.WebViewStyles(theme)['HTML View'].style,
-                dimensions.width
-              )}
+            <Icon
+              size={24}
+              color={palettes.App.Communical_Yellow_Emoticons}
+              name={'MaterialIcons/sports-baseball'}
             />
           </View>
-        </View>
-      </SimpleStyleScrollView>
+        </Touchable>
+        {/* Home Tab */}
+        <Touchable
+          onPress={() => {
+            try {
+              navigation.navigate('HomeScreen');
+            } catch (err) {
+              console.error(err);
+            }
+          }}
+          activeOpacity={0.8}
+          disabledOpacity={0.8}
+        >
+          <View
+            style={StyleSheet.applyWidth(
+              {
+                alignItems: 'center',
+                height: 48,
+                justifyContent: 'center',
+                width: 48,
+              },
+              dimensions.width
+            )}
+          >
+            {/* Home Icon */}
+            <Icon
+              size={24}
+              color={palettes.App.Communical_Yellow_Emoticons}
+              name={'Entypo/home'}
+            />
+          </View>
+        </Touchable>
+        {/* Profile Tab */}
+        <Touchable
+          onPress={() => {
+            try {
+              if (Constants['SportValue'] === 2) {
+                navigation.navigate('GAAUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 1) {
+                navigation.navigate('SoccerUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 3) {
+                navigation.navigate('RugbyUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 6) {
+                navigation.navigate('SoccerUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 7) {
+                navigation.navigate('GAAUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 8) {
+                navigation.navigate('RugbyUserProfileScreen');
+              } else {
+              }
+            } catch (err) {
+              console.error(err);
+            }
+          }}
+          activeOpacity={0.8}
+          disabledOpacity={0.8}
+        >
+          <View
+            style={StyleSheet.applyWidth(
+              {
+                alignItems: 'center',
+                height: 48,
+                justifyContent: 'center',
+                width: 48,
+              },
+              dimensions.width
+            )}
+          >
+            <Icon
+              size={24}
+              color={palettes.App.Communical_Yellow_Emoticons}
+              name={'AntDesign/user'}
+            />
+          </View>
+        </Touchable>
+      </View>
     </ScreenContainer>
   );
 };

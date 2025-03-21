@@ -11,6 +11,7 @@ import {
 import { Text, View } from 'react-native';
 import * as GlobalStyles from '../GlobalStyles.js';
 import * as ShootrSignUpApi from '../apis/ShootrSignUpApi.js';
+import * as ShootrSupabaseDBAPIApi from '../apis/ShootrSupabaseDBAPIApi.js';
 import * as GlobalVariables from '../config/GlobalVariableContext';
 import Images from '../config/Images';
 import palettes from '../themes/palettes';
@@ -30,6 +31,7 @@ const SignUpScreen = props => {
   const [checkboxRowValue, setCheckboxRowValue] = React.useState('');
   const shootrSignUpUserManagementSignUpPOST =
     ShootrSignUpApi.useUserManagementSignUpPOST();
+  const shootrSupabaseDBAPIUsersPOST = ShootrSupabaseDBAPIApi.useUsersPOST();
 
   return (
     <ScreenContainer scrollable={false} hasSafeArea={false}>
@@ -61,7 +63,7 @@ const SignUpScreen = props => {
             transitionEffect={'cross-dissolve'}
             transitionTiming={'ease-in-out'}
             {...GlobalStyles.ExpoImageStyles(theme)['Image (default)'].props}
-            source={imageSource(Images['ShootrBigLogoTransparent'])}
+            source={imageSource(Images['shootrredesigninappimage'])}
             style={StyleSheet.applyWidth(
               StyleSheet.compose(
                 GlobalStyles.ExpoImageStyles(theme)['Image (default)'].style,
@@ -237,6 +239,15 @@ const SignUpScreen = props => {
                 if (message) {
                   return;
                 }
+                setGlobalVariableValue({
+                  key: 'Username',
+                  value: NewEmailValue,
+                });
+                (
+                  await shootrSupabaseDBAPIUsersPOST.mutateAsync({
+                    username: NewEmailValue,
+                  })
+                )?.json;
                 navigation.navigate('AddUserChooseSportScreen');
               } catch (err) {
                 console.error(err);

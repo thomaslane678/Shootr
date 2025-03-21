@@ -1,8 +1,11 @@
 import React from 'react';
 import {
   Button,
+  RadioButton,
+  RadioButtonGroup,
   ScreenContainer,
   SimpleStyleScrollView,
+  Spacer,
   TextInput,
   withTheme,
 } from '@draftbit/ui';
@@ -33,14 +36,16 @@ const AddUserScreen = props => {
     React.useState('customer');
   const [radioButtonGroupValue2, setRadioButtonGroupValue2] =
     React.useState('');
+  const [radioButtonGroupValue3, setRadioButtonGroupValue3] =
+    React.useState('');
   const [radiobuttonvalue2, setRadiobuttonvalue2] = React.useState('');
   const [styledTextFieldValue, setStyledTextFieldValue] = React.useState('');
   const [textAreaValue, setTextAreaValue] = React.useState('');
   const [textInputValue, setTextInputValue] = React.useState('');
   const shootrSupabaseDBAPIMatchResultsPostPOST =
     ShootrSupabaseDBAPIApi.useMatchResultsPostPOST();
-  const shootrSupabaseDBAPIAddUserPOST =
-    ShootrSupabaseDBAPIApi.useAddUserPOST();
+  const shootrSupabaseDBAPIAddUser4POST =
+    ShootrSupabaseDBAPIApi.useAddUser4POST();
 
   return (
     <ScreenContainer
@@ -106,82 +111,103 @@ const AddUserScreen = props => {
             >
               {'Profile Type'}
             </Text>
-
+            {/* View 2 */}
             <View
               style={StyleSheet.applyWidth(
-                {
-                  flexDirection: 'row',
-                  justifyContent: 'space-around',
-                  marginTop: 10,
-                },
+                { flexDirection: 'row', justifyContent: 'space-evenly' },
                 dimensions.width
               )}
             >
-              <Button
-                accessible={true}
-                iconPosition={'left'}
-                onPress={() => {
+              <RadioButtonGroup
+                onValueChange={newRadioButtonGroupValue => {
+                  const radioButtonGroupValue = newRadioButtonGroupValue;
                   try {
-                    setGlobalVariableValue({
-                      key: 'AccountType',
-                      value: 'Player',
-                    });
-                    setGlobalVariableValue({
-                      key: 'AccountStatus',
-                      value: 100,
-                    });
+                    setRadioButtonGroupValue3(newRadioButtonGroupValue);
                   } catch (err) {
                     console.error(err);
                   }
                 }}
-                {...GlobalStyles.ButtonStyles(theme)['Button'].props}
-                activeOpacity={50}
-                style={StyleSheet.applyWidth(
-                  StyleSheet.compose(
-                    GlobalStyles.ButtonStyles(theme)['Button'].style,
-                    {
-                      backgroundColor: palettes.App.Communical_Yellow_Emoticons,
-                      color: palettes.App.Peoplebit_Turquoise,
-                      width: 120,
+                direction={'horizontal'}
+                value={radioButtonGroupValue3}
+              >
+                <RadioButton
+                  onPress={() => {
+                    try {
+                      setGlobalVariableValue({
+                        key: 'AccountStatus',
+                        value: 100,
+                      });
+                      setGlobalVariableValue({
+                        key: 'AccountType',
+                        value: 'Player',
+                      });
+                    } catch (err) {
+                      console.error(err);
                     }
-                  ),
-                  dimensions.width
-                )}
-                title={'Player'}
-              />
-              {/* Button 2 */}
-              <Button
-                accessible={true}
-                iconPosition={'left'}
-                onPress={() => {
-                  try {
-                    setGlobalVariableValue({
-                      key: 'AccountType',
-                      value: 'Admin',
-                    });
-                    setGlobalVariableValue({
-                      key: 'AccountStatus',
-                      value: 101,
-                    });
-                  } catch (err) {
-                    console.error(err);
-                  }
-                }}
-                {...GlobalStyles.ButtonStyles(theme)['Button'].props}
-                activeOpacity={50}
-                style={StyleSheet.applyWidth(
-                  StyleSheet.compose(
-                    GlobalStyles.ButtonStyles(theme)['Button'].style,
-                    {
-                      backgroundColor: palettes.App.Communical_Yellow_Emoticons,
-                      color: palettes.App.Peoplebit_Turquoise,
-                      width: 120,
+                  }}
+                  selectedIcon={'MaterialIcons/radio-button-checked'}
+                  size={24}
+                  unselectedIcon={'MaterialIcons/radio-button-unchecked'}
+                  color={palettes.App.Communical_Yellow_Emoticons}
+                  unselectedColor={palettes.App.Communical_Yellow_Emoticons}
+                  value={100}
+                />
+                <Text
+                  accessible={true}
+                  selectable={false}
+                  {...GlobalStyles.TextStyles(theme)['Text 2'].props}
+                  style={StyleSheet.applyWidth(
+                    StyleSheet.compose(
+                      GlobalStyles.TextStyles(theme)['Text 2'].style,
+                      theme.typography.body1,
+                      {}
+                    ),
+                    dimensions.width
+                  )}
+                >
+                  {'Player'}
+                </Text>
+                <Spacer bottom={8} top={8} left={100} right={16} />
+                {/* Radio Button 2 */}
+                <RadioButton
+                  onPress={() => {
+                    try {
+                      setGlobalVariableValue({
+                        key: 'AccountStatus',
+                        value: 101,
+                      });
+                      setGlobalVariableValue({
+                        key: 'AccountType',
+                        value: 'Admin',
+                      });
+                    } catch (err) {
+                      console.error(err);
                     }
-                  ),
-                  dimensions.width
-                )}
-                title={'Admin'}
-              />
+                  }}
+                  selectedIcon={'MaterialIcons/radio-button-checked'}
+                  size={24}
+                  unselectedIcon={'MaterialIcons/radio-button-unchecked'}
+                  color={palettes.App.Communical_Yellow_Emoticons}
+                  unselectedColor={palettes.App.Communical_Yellow_Emoticons}
+                  value={101}
+                />
+                {/* Text 2 */}
+                <Text
+                  accessible={true}
+                  selectable={false}
+                  {...GlobalStyles.TextStyles(theme)['Text 2'].props}
+                  style={StyleSheet.applyWidth(
+                    StyleSheet.compose(
+                      GlobalStyles.TextStyles(theme)['Text 2'].style,
+                      theme.typography.body1,
+                      {}
+                    ),
+                    dimensions.width
+                  )}
+                >
+                  {'Admin'}
+                </Text>
+              </RadioButtonGroup>
             </View>
           </View>
 
@@ -219,13 +245,17 @@ const AddUserScreen = props => {
               changeTextDelay={500}
               onChangeText={newTextInputValue => {
                 try {
-                  setPlayerName(newTextInputValue);
+                  setGlobalVariableValue({
+                    key: 'Name',
+                    value: newTextInputValue,
+                  });
                 } catch (err) {
                   console.error(err);
                 }
               }}
               webShowOutline={true}
               placeholder={'Player Name'}
+              placeholderTextColor={palettes.App.Communical_Yellow_Emoticons}
               style={StyleSheet.applyWidth(
                 {
                   backgroundColor: palettes.App.Peoplebit_Turquoise,
@@ -257,7 +287,7 @@ const AddUserScreen = props => {
               dimensions.width
             )}
           >
-            {'Email Address'}
+            {'Username'}
           </Text>
           {/* Username */}
           <View
@@ -270,7 +300,7 @@ const AddUserScreen = props => {
                 borderRightWidth: 40,
                 flex: 1,
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'center',
                 marginBottom: 10,
                 marginTop: 10,
                 width: '100%',
@@ -278,36 +308,21 @@ const AddUserScreen = props => {
               dimensions.width
             )}
           >
-            <TextInput
-              autoCapitalize={'none'}
-              autoCorrect={true}
-              changeTextDelay={500}
-              onChangeText={newTextInputValue => {
-                try {
-                  setPlayerUserName(newTextInputValue);
-                } catch (err) {
-                  console.error(err);
-                }
-              }}
-              webShowOutline={true}
-              placeholder={'Email Address'}
+            <Text
+              accessible={true}
+              selectable={false}
+              {...GlobalStyles.TextStyles(theme)['Text 2'].props}
               style={StyleSheet.applyWidth(
-                {
-                  backgroundColor: palettes.App.Peoplebit_Turquoise,
-                  borderBottomWidth: 1,
-                  borderColor: palettes.App.ViewBG,
-                  borderLeftWidth: 1,
-                  borderRadius: 29,
-                  borderRightWidth: 1,
-                  borderTopWidth: 1,
-                  color: palettes.App.Communical_Yellow_Emoticons,
-                  height: 50,
-                  paddingLeft: 16,
-                  width: '100%',
-                },
+                StyleSheet.compose(
+                  GlobalStyles.TextStyles(theme)['Text 2'].style,
+                  theme.typography.body1,
+                  { alignSelf: 'center' }
+                ),
                 dimensions.width
               )}
-            />
+            >
+              {Constants['Username']}
+            </Text>
           </View>
           {/* Text 3 */}
           <Text
@@ -336,7 +351,7 @@ const AddUserScreen = props => {
                 borderRightWidth: 40,
                 flex: 1,
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'center',
                 marginBottom: 10,
                 marginTop: 10,
                 width: '100%',
@@ -344,39 +359,21 @@ const AddUserScreen = props => {
               dimensions.width
             )}
           >
-            <TextInput
-              autoCapitalize={'none'}
-              autoCorrect={true}
-              changeTextDelay={500}
-              onChangeText={newTextInputValue => {
-                try {
-                  setGlobalVariableValue({
-                    key: 'HomeTeam',
-                    value: newTextInputValue,
-                  });
-                } catch (err) {
-                  console.error(err);
-                }
-              }}
-              webShowOutline={true}
-              placeholder={'Team Name'}
+            <Text
+              accessible={true}
+              selectable={false}
+              {...GlobalStyles.TextStyles(theme)['Text 2'].props}
               style={StyleSheet.applyWidth(
-                {
-                  backgroundColor: palettes.App.Peoplebit_Turquoise,
-                  borderBottomWidth: 1,
-                  borderColor: palettes.App.ViewBG,
-                  borderLeftWidth: 1,
-                  borderRadius: 20,
-                  borderRightWidth: 1,
-                  borderTopWidth: 1,
-                  color: palettes.App.Communical_Yellow_Emoticons,
-                  height: 50,
-                  paddingLeft: 16,
-                  width: '100%',
-                },
+                StyleSheet.compose(
+                  GlobalStyles.TextStyles(theme)['Text 2'].style,
+                  theme.typography.body1,
+                  { alignSelf: 'center' }
+                ),
                 dimensions.width
               )}
-            />
+            >
+              {Constants['HomeTeam']}
+            </Text>
           </View>
           {/* Text 4 */}
           <Text
@@ -413,39 +410,21 @@ const AddUserScreen = props => {
               dimensions.width
             )}
           >
-            <TextInput
-              autoCapitalize={'none'}
-              autoCorrect={true}
-              changeTextDelay={500}
-              onChangeText={newTextInputValue => {
-                try {
-                  setGlobalVariableValue({
-                    key: 'TeamID',
-                    value: newTextInputValue,
-                  });
-                } catch (err) {
-                  console.error(err);
-                }
-              }}
-              webShowOutline={true}
-              placeholder={'TeamID'}
+            <Text
+              accessible={true}
+              selectable={false}
+              {...GlobalStyles.TextStyles(theme)['Text 2'].props}
               style={StyleSheet.applyWidth(
-                {
-                  backgroundColor: palettes.App.Peoplebit_Turquoise,
-                  borderBottomWidth: 1,
-                  borderColor: palettes.App.ViewBG,
-                  borderLeftWidth: 1,
-                  borderRadius: 20,
-                  borderRightWidth: 1,
-                  borderTopWidth: 1,
-                  color: palettes.App.Communical_Yellow_Emoticons,
-                  height: 50,
-                  paddingLeft: 16,
-                  width: '100%',
-                },
+                StyleSheet.compose(
+                  GlobalStyles.TextStyles(theme)['Text 2'].style,
+                  theme.typography.body1,
+                  { alignSelf: 'center' }
+                ),
                 dimensions.width
               )}
-            />
+            >
+              {Constants['TeamID']}
+            </Text>
           </View>
 
           <View>
@@ -502,7 +481,7 @@ const AddUserScreen = props => {
                 borderRightWidth: 40,
                 flex: 1,
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'center',
                 marginBottom: 10,
                 marginTop: 10,
                 width: '100%',
@@ -510,39 +489,21 @@ const AddUserScreen = props => {
               dimensions.width
             )}
           >
-            <TextInput
-              autoCapitalize={'none'}
-              autoCorrect={true}
-              changeTextDelay={500}
-              onChangeText={newTextInputValue => {
-                try {
-                  setGlobalVariableValue({
-                    key: 'Location',
-                    value: newTextInputValue,
-                  });
-                } catch (err) {
-                  console.error(err);
-                }
-              }}
-              webShowOutline={true}
-              placeholder={'Location'}
+            <Text
+              accessible={true}
+              selectable={false}
+              {...GlobalStyles.TextStyles(theme)['Text 2'].props}
               style={StyleSheet.applyWidth(
-                {
-                  backgroundColor: palettes.App.Peoplebit_Turquoise,
-                  borderBottomWidth: 1,
-                  borderColor: palettes.App.ViewBG,
-                  borderLeftWidth: 1,
-                  borderRadius: 20,
-                  borderRightWidth: 1,
-                  borderTopWidth: 1,
-                  color: palettes.App.Communical_Yellow_Emoticons,
-                  height: 50,
-                  paddingLeft: 16,
-                  width: '100%',
-                },
+                StyleSheet.compose(
+                  GlobalStyles.TextStyles(theme)['Text 2'].style,
+                  theme.typography.body1,
+                  { alignSelf: 'center' }
+                ),
                 dimensions.width
               )}
-            />
+            >
+              {Constants['Location']}
+            </Text>
           </View>
           {/* Text 6 */}
           <Text
@@ -571,7 +532,7 @@ const AddUserScreen = props => {
                 borderRightWidth: 40,
                 flex: 1,
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'center',
                 marginBottom: 10,
                 marginTop: 10,
                 width: '100%',
@@ -579,36 +540,21 @@ const AddUserScreen = props => {
               dimensions.width
             )}
           >
-            <TextInput
-              autoCapitalize={'none'}
-              autoCorrect={true}
-              changeTextDelay={500}
-              onChangeText={newTextInputValue => {
-                try {
-                  setDivision(newTextInputValue);
-                } catch (err) {
-                  console.error(err);
-                }
-              }}
-              webShowOutline={true}
-              placeholder={'Division'}
+            <Text
+              accessible={true}
+              selectable={false}
+              {...GlobalStyles.TextStyles(theme)['Text 2'].props}
               style={StyleSheet.applyWidth(
-                {
-                  backgroundColor: palettes.App.Peoplebit_Turquoise,
-                  borderBottomWidth: 1,
-                  borderColor: palettes.App.ViewBG,
-                  borderLeftWidth: 1,
-                  borderRadius: 20,
-                  borderRightWidth: 1,
-                  borderTopWidth: 1,
-                  color: palettes.App.Communical_Yellow_Emoticons,
-                  height: 50,
-                  paddingLeft: 16,
-                  width: '100%',
-                },
+                StyleSheet.compose(
+                  GlobalStyles.TextStyles(theme)['Text 2'].style,
+                  theme.typography.body1,
+                  { alignSelf: 'center' }
+                ),
                 dimensions.width
               )}
-            />
+            >
+              {Constants['Grade']}
+            </Text>
           </View>
           {/* Text 8 */}
           <Text
@@ -661,6 +607,7 @@ const AddUserScreen = props => {
               }}
               webShowOutline={true}
               placeholder={'Position'}
+              placeholderTextColor={palettes.App.Communical_Yellow_Emoticons}
               style={StyleSheet.applyWidth(
                 {
                   backgroundColor: palettes.App.Peoplebit_Turquoise,
@@ -699,17 +646,17 @@ const AddUserScreen = props => {
             const handler = async () => {
               try {
                 (
-                  await shootrSupabaseDBAPIAddUserPOST.mutateAsync({
-                    Basic: Constants['AccountType'],
+                  await shootrSupabaseDBAPIAddUser4POST.mutateAsync({
+                    Basic: 'Basic',
                     Grade: Constants['Grade'],
-                    Location: Location,
-                    Player: Constants['AccountType'],
-                    PlayerName: PlayerName,
-                    Sport: Sport,
+                    Location: Constants['Location'],
+                    Player: Constants['AccountStatus'],
+                    PlayerName: Constants['Name'],
+                    Sport: Constants['Sport'],
                     Sportcode: Constants['SportValue'],
-                    Team: TeamName,
-                    TeamID: TeamID,
-                    Username: PlayerUserName,
+                    Team: Constants['HomeTeam'],
+                    TeamID: Constants['TeamID'],
+                    Username: Constants['Username'],
                     position: Constants['Position'],
                     rolecode: Constants['AccountStatus'],
                   })
@@ -721,35 +668,7 @@ const AddUserScreen = props => {
                   buttonText: undefined,
                 });
 
-                setGlobalVariableValue({
-                  key: 'HomeTeam',
-                  value: TeamName,
-                });
-                setGlobalVariableValue({
-                  key: 'TeamID',
-                  value: TeamID,
-                });
-                setGlobalVariableValue({
-                  key: 'Name',
-                  value: PlayerName,
-                });
-                setGlobalVariableValue({
-                  key: 'Username',
-                  value: PlayerUserName,
-                });
-                setGlobalVariableValue({
-                  key: 'Location',
-                  value: Location,
-                });
-                setGlobalVariableValue({
-                  key: 'Grade',
-                  value: Division,
-                });
-                setGlobalVariableValue({
-                  key: 'Sport',
-                  value: Sport,
-                });
-                navigation.navigate('PlayerSignUpConfirmationScreen');
+                navigation.navigate('HomeScreen');
               } catch (err) {
                 console.error(err);
               }

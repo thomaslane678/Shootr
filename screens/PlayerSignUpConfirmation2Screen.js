@@ -16,7 +16,7 @@ import * as StyleSheet from '../utils/StyleSheet';
 import imageSource from '../utils/imageSource';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
-const PlayerSignUpConfirmationScreen = props => {
+const PlayerSignUpConfirmation2Screen = props => {
   const { theme, navigation } = props;
   const dimensions = useWindowDimensions();
   const Constants = GlobalVariables.useValues();
@@ -39,7 +39,7 @@ const PlayerSignUpConfirmationScreen = props => {
           transitionEffect={'cross-dissolve'}
           transitionTiming={'ease-in-out'}
           {...GlobalStyles.ExpoImageStyles(theme)['Image (default)'].props}
-          source={imageSource(Images['ShootrBigLogoTransparent'])}
+          source={imageSource(Images['shootrredesigninappimage'])}
           style={StyleSheet.applyWidth(
             StyleSheet.compose(
               GlobalStyles.ExpoImageStyles(theme)['Image (default)'].style,
@@ -167,4 +167,4 @@ const PlayerSignUpConfirmationScreen = props => {
   );
 };
 
-export default withTheme(PlayerSignUpConfirmationScreen);
+export default withTheme(PlayerSignUpConfirmation2Screen);

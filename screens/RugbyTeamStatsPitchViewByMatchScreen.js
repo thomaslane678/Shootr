@@ -1007,105 +1007,6 @@ const RugbyTeamStatsPitchViewByMatchScreen = props => {
                   )}
                   title={'Choose Stat 1'}
                 />
-                {/* Choose Stat & Refresh API Button 2 */}
-                <Button
-                  accessible={true}
-                  iconPosition={'left'}
-                  onPress={() => {
-                    try {
-                      setGlobalVariableValue({
-                        key: 'X11',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'X12',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'X13',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'X14',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'X15',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'X16',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'X17',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'X19',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'X20',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'Y11',
-                        value: 1,
-                      });
-                      undefined;
-                      setGlobalVariableValue({
-                        key: 'Y13',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'Y14',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'Y15',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'Y16',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'Y17',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'Y18',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'Y19',
-                        value: 1,
-                      });
-                      setGlobalVariableValue({
-                        key: 'Y20',
-                        value: 1,
-                      });
-                      navigation.navigate('RugbyChooseStat2Screen');
-                    } catch (err) {
-                      console.error(err);
-                    }
-                  }}
-                  {...GlobalStyles.ButtonStyles(theme)['Button'].props}
-                  style={StyleSheet.applyWidth(
-                    StyleSheet.compose(
-                      GlobalStyles.ButtonStyles(theme)['Button'].style,
-                      {
-                        backgroundColor:
-                          palettes.App.Communical_Yellow_Emoticons,
-                        color: palettes.App.Peoplebit_Turquoise,
-                        width: 100,
-                      }
-                    ),
-                    dimensions.width
-                  )}
-                  title={'Choose Stat 2'}
-                />
               </View>
               {/* View 2 */}
               <View>
@@ -1141,8 +1042,6 @@ const RugbyTeamStatsPitchViewByMatchScreen = props => {
                   )}
                 >
                   {Constants['ChosenStat']}
-                  {'s & '}
-                  {Constants['ChosenStat2']}
                   {'s'}
                 </Text>
               </View>
@@ -2117,7 +2016,7 @@ Bottom Goal
         {/* Spacer 3 */}
         <Spacer bottom={8} left={8} right={8} top={8} />
       </SimpleStyleScrollView>
-      {/* Updated Menu */}
+      {/* Final Menu */}
       <View
         style={StyleSheet.applyWidth(
           {
@@ -2210,11 +2109,26 @@ Bottom Goal
               }
 
               if (Constants['SportValue'] === 1) {
-                navigation.navigate('SoccerUserProfileScreen');
+                navigation.navigate('SoccerUserProfileBasicScreen');
               } else {
               }
 
               if (Constants['SportValue'] === 3) {
+                navigation.navigate('RugbyUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 6) {
+                navigation.navigate('SoccerUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 7) {
+                navigation.navigate('GAAUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 8) {
                 navigation.navigate('RugbyUserProfileScreen');
               } else {
               }

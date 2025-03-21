@@ -61,7 +61,7 @@ const LogInScreen = props => {
             transitionEffect={'cross-dissolve'}
             transitionTiming={'ease-in-out'}
             {...GlobalStyles.ExpoImageStyles(theme)['Image (default)'].props}
-            source={imageSource(Images['ShootrBigLogoTransparent'])}
+            source={imageSource(Images['shootrredesigninappimage'])}
             style={StyleSheet.applyWidth(
               StyleSheet.compose(
                 GlobalStyles.ExpoImageStyles(theme)['Image (default)'].style,

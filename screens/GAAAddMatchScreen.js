@@ -3,6 +3,7 @@ import {
   Button,
   DatePicker,
   Divider,
+  ExpoImage,
   Icon,
   NumberInput,
   RadioButton,
@@ -17,9 +18,11 @@ import { Text, View } from 'react-native';
 import * as GlobalStyles from '../GlobalStyles.js';
 import * as ShootrSupabaseDBAPIApi from '../apis/ShootrSupabaseDBAPIApi.js';
 import * as GlobalVariables from '../config/GlobalVariableContext';
+import Images from '../config/Images';
 import palettes from '../themes/palettes';
 import Breakpoints from '../utils/Breakpoints';
 import * as StyleSheet from '../utils/StyleSheet';
+import imageSource from '../utils/imageSource';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
 const defaultProps = { Date: null };
@@ -56,6 +59,32 @@ const GAAAddMatchScreen = props => {
       hasBottomSafeArea={false}
       scrollable={true}
     >
+      <View
+        style={StyleSheet.applyWidth(
+          { alignItems: 'center' },
+          dimensions.width
+        )}
+      >
+        <ExpoImage
+          allowDownscaling={true}
+          cachePolicy={'disk'}
+          contentPosition={'center'}
+          resizeMode={'cover'}
+          transitionDuration={300}
+          transitionEffect={'cross-dissolve'}
+          transitionTiming={'ease-in-out'}
+          {...GlobalStyles.ExpoImageStyles(theme)['Image 4'].props}
+          source={imageSource(Images['shootrredesigninappimage'])}
+          style={StyleSheet.applyWidth(
+            StyleSheet.compose(
+              GlobalStyles.ExpoImageStyles(theme)['Image 4'].style,
+              { height: 200, width: 200 }
+            ),
+            dimensions.width
+          )}
+        />
+      </View>
+
       <SimpleStyleKeyboardAwareScrollView
         enableAutomaticScroll={false}
         enableOnAndroid={false}
@@ -469,7 +498,7 @@ const GAAAddMatchScreen = props => {
                     Notification: 'New Match',
                     TeamID: Constants['TeamID'],
                     TeamName: Constants['HomeTeam'],
-                    createdat: new Date(),
+                    date: new Date(),
                   })
                 )?.json;
                 navigation.navigate('TeamHomeScreen');
@@ -524,7 +553,7 @@ const GAAAddMatchScreen = props => {
                     Notification: 'New Match',
                     TeamID: Constants['TeamID'],
                     TeamName: Constants['HomeTeam'],
-                    createdat: new Date(),
+                    date: new Date(),
                   })
                 )?.json;
                 navigation.navigate('GAAAddMatchScreen');
@@ -553,7 +582,7 @@ const GAAAddMatchScreen = props => {
           title={'Save & Add Another'}
         />
       </SimpleStyleKeyboardAwareScrollView>
-      {/* Updated Menu */}
+      {/* Final Menu */}
       <View
         style={StyleSheet.applyWidth(
           {
@@ -646,11 +675,26 @@ const GAAAddMatchScreen = props => {
               }
 
               if (Constants['SportValue'] === 1) {
-                navigation.navigate('SoccerUserProfileScreen');
+                navigation.navigate('SoccerUserProfileBasicScreen');
               } else {
               }
 
               if (Constants['SportValue'] === 3) {
+                navigation.navigate('RugbyUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 6) {
+                navigation.navigate('SoccerUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 7) {
+                navigation.navigate('GAAUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 8) {
                 navigation.navigate('RugbyUserProfileScreen');
               } else {
               }

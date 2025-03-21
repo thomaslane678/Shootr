@@ -48,205 +48,103 @@ const SoccerUserProfileBasicScreen = props => {
           dimensions.width
         )}
       >
-        {/* Player Bio */}
+        {/* User Details */}
         <View
           style={StyleSheet.applyWidth(
-            { alignItems: 'center', marginTop: 30 },
+            { marginTop: 15, paddingLeft: 20, paddingRight: 20 },
             dimensions.width
           )}
         >
-          {/* About */}
+          {/* User Details */}
           <View
             style={StyleSheet.applyWidth(
-              {
-                backgroundColor: palettes.App.Peoplebit_Turquoise,
-                borderRadius: 12,
-                marginLeft: 20,
-                marginRight: 20,
-                paddingBottom: 20,
-                paddingLeft: 20,
-                paddingRight: 20,
-                paddingTop: 20,
-              },
+              { alignItems: 'center', flexDirection: 'row', height: 100 },
               dimensions.width
             )}
           >
-            {/* Top Section */}
-            <View
-              style={StyleSheet.applyWidth(
-                { flexDirection: 'row' },
-                dimensions.width
-              )}
-            >
+            {/* User Image */}
+            <View>
               <Image
                 resizeMode={'cover'}
-                source={imageSource(Images['ShootrBigLogoTransparent'])}
+                {...GlobalStyles.ImageStyles(theme)['Image 2'].props}
+                source={imageSource(Images['shootrredesigninappimage'])}
                 style={StyleSheet.applyWidth(
-                  { height: 168, width: 120 },
+                  GlobalStyles.ImageStyles(theme)['Image 2'].style,
                   dimensions.width
                 )}
               />
-              <View
+            </View>
+            {/* Details */}
+            <View
+              style={StyleSheet.applyWidth(
+                {
+                  height: '100%',
+                  justifyContent: 'space-around',
+                  paddingLeft: 16,
+                },
+                dimensions.width
+              )}
+            >
+              {/* Name */}
+              <Text
+                accessible={true}
+                selectable={false}
                 style={StyleSheet.applyWidth(
-                  { flex: 1, marginLeft: 20 },
+                  {
+                    color: palettes.App.NFT_TIME_Black,
+                    fontFamily: 'Inter_600SemiBold',
+                    fontSize: 19,
+                  },
                   dimensions.width
                 )}
               >
-                {/* Name */}
+                {Constants['Name']}
+              </Text>
+              {/* Role */}
+              <Text
+                accessible={true}
+                selectable={false}
+                style={StyleSheet.applyWidth(
+                  {
+                    color: palettes.App['Custom Color_30'],
+                    fontFamily: 'Poppins_400Regular',
+                  },
+                  dimensions.width
+                )}
+              >
+                {Constants['Position']}
+                {' @ '}
+                {/* Company */}
                 <Text
                   accessible={true}
                   selectable={false}
                   style={StyleSheet.applyWidth(
                     {
-                      color: palettes.App.Communical_Yellow_Emoticons,
-                      fontFamily: 'Inter_500Medium',
-                      fontSize: 17,
-                      marginBottom: 6,
-                    },
-                    dimensions.width
-                  )}
-                >
-                  {Constants['Name']}
-                </Text>
-                {/* Speciality */}
-                <Text
-                  accessible={true}
-                  selectable={false}
-                  style={StyleSheet.applyWidth(
-                    {
-                      color: palettes.App.Communical_Yellow_Emoticons,
-                      fontFamily: 'Inter_400Regular',
-                      opacity: 0.5,
-                      textAlign: 'center',
+                      color: palettes.App.NFT_TIME_Black,
+                      fontFamily: 'Inter_600SemiBold',
                     },
                     dimensions.width
                   )}
                 >
                   {Constants['HomeTeam']}
                 </Text>
-                {/* Rating */}
-                <View
-                  style={StyleSheet.applyWidth(
-                    {
-                      alignItems: 'center',
-                      alignSelf: 'auto',
-                      flexDirection: 'row',
-                      marginTop: 18,
-                    },
-                    dimensions.width
-                  )}
-                >
-                  <Icon
-                    color={palettes.App.Communical_Yellow_Emoticons}
-                    name={'FontAwesome/star'}
-                    size={20}
-                    style={StyleSheet.applyWidth(
-                      { backgroundColor: palettes.App.Peoplebit_Turquoise },
-                      dimensions.width
-                    )}
-                  />
-                  <View
-                    style={StyleSheet.applyWidth(
-                      { marginLeft: 15 },
-                      dimensions.width
-                    )}
-                  >
-                    <Text
-                      accessible={true}
-                      selectable={false}
-                      style={StyleSheet.applyWidth(
-                        {
-                          color: palettes.App.Communical_Yellow_Emoticons,
-                          fontFamily: 'Inter_300Light',
-                          opacity: 0.5,
-                          textAlign: 'center',
-                        },
-                        dimensions.width
-                      )}
-                    >
-                      {'Position'}
-                    </Text>
-
-                    <Text
-                      accessible={true}
-                      selectable={false}
-                      style={StyleSheet.applyWidth(
-                        {
-                          alignSelf: 'auto',
-                          color: palettes.App.Communical_Yellow_Emoticons,
-                          fontFamily: 'Inter_400Regular',
-                          fontSize: 15,
-                          marginTop: 4,
-                          textAlign: 'center',
-                        },
-                        dimensions.width
-                      )}
-                    >
-                      {Constants['Position']}
-                    </Text>
-                  </View>
-                </View>
-                {/* Location */}
-                <View
-                  style={StyleSheet.applyWidth(
-                    {
-                      alignItems: 'center',
-                      flexDirection: 'row',
-                      marginTop: 18,
-                    },
-                    dimensions.width
-                  )}
-                >
-                  <Icon
-                    color={palettes.App.Communical_Yellow_Emoticons}
-                    name={'Ionicons/location-outline'}
-                    size={25}
-                    style={StyleSheet.applyWidth(
-                      { height: 24, width: 24 },
-                      dimensions.width
-                    )}
-                  />
-                  <View
-                    style={StyleSheet.applyWidth(
-                      { marginLeft: 15 },
-                      dimensions.width
-                    )}
-                  >
-                    <Text
-                      accessible={true}
-                      selectable={false}
-                      style={StyleSheet.applyWidth(
-                        {
-                          color: palettes.App.Communical_Yellow_Emoticons,
-                          fontFamily: 'Inter_300Light',
-                          opacity: 0.5,
-                          textAlign: 'center',
-                        },
-                        dimensions.width
-                      )}
-                    >
-                      {Constants['Location']}
-                    </Text>
-
-                    <Text
-                      accessible={true}
-                      selectable={false}
-                      style={StyleSheet.applyWidth(
-                        {
-                          color: palettes.App.Communical_Yellow_Emoticons,
-                          fontFamily: 'Inter_400Regular',
-                          fontSize: 15,
-                          marginTop: 4,
-                          textAlign: 'center',
-                        },
-                        dimensions.width
-                      )}
-                    >
-                      {Constants['Grade']}
-                    </Text>
-                  </View>
-                </View>
-              </View>
+              </Text>
+              {/* Tagline */}
+              <Text
+                accessible={true}
+                selectable={false}
+                style={StyleSheet.applyWidth(
+                  {
+                    color: palettes.App.NFT_TIME_Black,
+                    fontFamily: 'Inter_600SemiBold',
+                    fontSize: 13,
+                  },
+                  dimensions.width
+                )}
+              >
+                {Constants['Location']} {Constants['Grade']}{' '}
+                {Constants['Sport']}
+              </Text>
             </View>
           </View>
         </View>
@@ -324,6 +222,7 @@ const SoccerUserProfileBasicScreen = props => {
           )}
           title={'Advanced Analytics'}
         />
+        {/* Spacer 3 */}
         <Spacer bottom={8} left={8} right={8} top={8} />
         {/* Button 2 */}
         <Button
@@ -352,8 +251,37 @@ const SoccerUserProfileBasicScreen = props => {
           )}
           title={'Add New TeamID'}
         />
+        {/* Spacer 4 */}
+        <Spacer bottom={8} left={8} right={8} top={8} />
+        {/* Button 3 */}
+        <Button
+          accessible={true}
+          iconPosition={'left'}
+          onPress={() => {
+            try {
+              navigation.navigate('DeleteTeamIDScreen');
+            } catch (err) {
+              console.error(err);
+            }
+          }}
+          {...GlobalStyles.ButtonStyles(theme)['Button'].props}
+          style={StyleSheet.applyWidth(
+            StyleSheet.compose(
+              GlobalStyles.ButtonStyles(theme)['Button'].style,
+              {
+                backgroundColor: palettes.App.NFT_TIME_Red,
+                borderRadius: 12,
+                color: palettes.App.NFT_White_v2,
+                marginLeft: 20,
+                marginRight: 20,
+              }
+            ),
+            dimensions.width
+          )}
+          title={'Delete TeamID'}
+        />
       </SimpleStyleScrollView>
-      {/* Menu Tab */}
+      {/* Final Menu */}
       <View
         style={StyleSheet.applyWidth(
           {
@@ -437,7 +365,45 @@ const SoccerUserProfileBasicScreen = props => {
           </View>
         </Touchable>
         {/* Profile Tab */}
-        <Touchable activeOpacity={0.8} disabledOpacity={0.8}>
+        <Touchable
+          onPress={() => {
+            try {
+              if (Constants['SportValue'] === 2) {
+                navigation.navigate('GAAUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 1) {
+                navigation.navigate('SoccerUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 3) {
+                navigation.navigate('RugbyUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 6) {
+                navigation.navigate('SoccerUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 7) {
+                navigation.navigate('GAAUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 8) {
+                navigation.navigate('RugbyUserProfileScreen');
+              } else {
+              }
+            } catch (err) {
+              console.error(err);
+            }
+          }}
+          activeOpacity={0.8}
+          disabledOpacity={0.8}
+        >
           <View
             style={StyleSheet.applyWidth(
               {

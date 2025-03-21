@@ -38,7 +38,7 @@ const RugbyConfirmResultScreen = props => {
         <Image
           resizeMode={'cover'}
           {...GlobalStyles.ImageStyles(theme)['Image 2'].props}
-          source={imageSource(Images['_3'])}
+          source={imageSource(Images['shootrredesigninappimage'])}
           style={StyleSheet.applyWidth(
             GlobalStyles.ImageStyles(theme)['Image 2'].style,
             dimensions.width

@@ -41,6 +41,7 @@ const GAAUserProfileScreen = props => {
         dimensions.width
       )}
     >
+      {/* Dashboard */}
       <View>
         {/* Heading */}
         <Text
@@ -226,7 +227,7 @@ const GAAUserProfileScreen = props => {
               <Image
                 resizeMode={'cover'}
                 {...GlobalStyles.ImageStyles(theme)['Image 2'].props}
-                source={imageSource(Images['ShootrBigLogoTransparent'])}
+                source={imageSource(Images['shootrredesigninappimage'])}
                 style={StyleSheet.applyWidth(
                   GlobalStyles.ImageStyles(theme)['Image 2'].style,
                   dimensions.width
@@ -2063,8 +2064,37 @@ const GAAUserProfileScreen = props => {
           )}
           title={'Add New TeamID'}
         />
+        {/* Spacer 3 */}
+        <Spacer bottom={8} left={8} right={8} top={8} />
+        {/* Button 3 */}
+        <Button
+          accessible={true}
+          iconPosition={'left'}
+          onPress={() => {
+            try {
+              navigation.navigate('DeleteTeamIDScreen');
+            } catch (err) {
+              console.error(err);
+            }
+          }}
+          {...GlobalStyles.ButtonStyles(theme)['Button'].props}
+          style={StyleSheet.applyWidth(
+            StyleSheet.compose(
+              GlobalStyles.ButtonStyles(theme)['Button'].style,
+              {
+                backgroundColor: palettes.App.NFT_TIME_Red,
+                borderRadius: 12,
+                color: palettes.App.NFT_White_v2,
+                marginLeft: 20,
+                marginRight: 20,
+              }
+            ),
+            dimensions.width
+          )}
+          title={'Delete TeamID'}
+        />
       </SimpleStyleScrollView>
-      {/* Menu Tab */}
+      {/* Final Menu */}
       <View
         style={StyleSheet.applyWidth(
           {
@@ -2148,7 +2178,45 @@ const GAAUserProfileScreen = props => {
           </View>
         </Touchable>
         {/* Profile Tab */}
-        <Touchable activeOpacity={0.8} disabledOpacity={0.8}>
+        <Touchable
+          onPress={() => {
+            try {
+              if (Constants['SportValue'] === 2) {
+                navigation.navigate('GAAUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 1) {
+                navigation.navigate('SoccerUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 3) {
+                navigation.navigate('RugbyUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 6) {
+                navigation.navigate('SoccerUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 7) {
+                navigation.navigate('GAAUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 8) {
+                navigation.navigate('RugbyUserProfileScreen');
+              } else {
+              }
+            } catch (err) {
+              console.error(err);
+            }
+          }}
+          activeOpacity={0.8}
+          disabledOpacity={0.8}
+        >
           <View
             style={StyleSheet.applyWidth(
               {

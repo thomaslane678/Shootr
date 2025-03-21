@@ -4,10 +4,12 @@ import {
   ExpoImage,
   ScreenContainer,
   Spacer,
+  TextInput,
   withTheme,
 } from '@draftbit/ui';
 import { Text, View } from 'react-native';
 import * as GlobalStyles from '../GlobalStyles.js';
+import * as ShootrSupabaseDBAPIApi from '../apis/ShootrSupabaseDBAPIApi.js';
 import * as GlobalVariables from '../config/GlobalVariableContext';
 import Images from '../config/Images';
 import palettes from '../themes/palettes';
@@ -16,12 +18,13 @@ import * as StyleSheet from '../utils/StyleSheet';
 import imageSource from '../utils/imageSource';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
-const AddUserChooseSportScreen = props => {
+const SignUpAddTeamIDScreen = props => {
   const { theme, navigation } = props;
   const dimensions = useWindowDimensions();
   const Constants = GlobalVariables.useValues();
   const Variables = Constants;
   const setGlobalVariableValue = GlobalVariables.useSetValue();
+  const [textInputValue, setTextInputValue] = React.useState('');
 
   return (
     <ScreenContainer hasSafeArea={false} scrollable={false}>
@@ -53,8 +56,6 @@ const AddUserChooseSportScreen = props => {
       </View>
       {/* View 3 */}
       <View>
-        {/* Spacer 2 */}
-        <Spacer bottom={8} left={8} right={8} top={8} />
         <Text
           accessible={true}
           selectable={false}
@@ -64,15 +65,15 @@ const AddUserChooseSportScreen = props => {
               GlobalStyles.TextStyles(theme)['Text 2'].style,
               theme.typography.body1,
               {
-                alignSelf: 'center',
-                fontFamily: 'Inter_600SemiBold',
-                fontSize: 30,
+                color: palettes.App.NFT_TIME_Black,
+                fontFamily: 'Inter_700Bold',
+                textAlign: 'center',
               }
             ),
             dimensions.width
           )}
         >
-          {'Choose Sport'}
+          {'Find Your Team'}
         </Text>
         {/* Text 2 */}
         <Text
@@ -85,139 +86,119 @@ const AddUserChooseSportScreen = props => {
               theme.typography.body1,
               {
                 alignSelf: 'center',
-                fontFamily: 'Inter_600SemiBold',
-                fontSize: 15,
+                color: palettes.App.NFT_TIME_Black,
+                fontFamily: 'Inter_400Regular',
                 textAlign: 'center',
               }
             ),
             dimensions.width
           )}
         >
-          {'Welcome to Shootr - first choose your sport to begin'}
+          {'Enter the TeamID supplied by your Team Admin below'}
         </Text>
-        <Spacer bottom={8} left={8} right={8} top={8} />
       </View>
-
+      <Spacer bottom={8} left={8} right={8} top={8} />
       <View
         style={StyleSheet.applyWidth(
-          { height: '50%', justifyContent: 'flex-start' },
+          {
+            backgroundColor: palettes.App.Peoplebit_Turquoise,
+            borderRadius: 20,
+            height: 50,
+            marginLeft: 40,
+            marginRight: 40,
+          },
           dimensions.width
         )}
       >
-        {/* Button 3 */}
-        <Button
-          accessible={true}
-          iconPosition={'left'}
-          onPress={() => {
+        <TextInput
+          autoCapitalize={'none'}
+          autoCorrect={true}
+          changeTextDelay={500}
+          onChangeText={newTextInputValue => {
+            const textInputValue = newTextInputValue;
             try {
+              setTextInputValue(textInputValue);
               setGlobalVariableValue({
-                key: 'Sport',
-                value: 'Football',
+                key: 'TeamID',
+                value: newTextInputValue,
               });
-              setGlobalVariableValue({
-                key: 'SportValue',
-                value: 1,
-              });
-              navigation.navigate('SignUpAddTeamIDScreen');
             } catch (err) {
               console.error(err);
             }
           }}
-          {...GlobalStyles.ButtonStyles(theme)['Button'].props}
+          placeholder={'Enter a value...'}
+          webShowOutline={true}
+          {...GlobalStyles.TextInputStyles(theme)['Text Input'].props}
+          placeholderTextColor={palettes.App.Communical_Yellow_Emoticons}
           style={StyleSheet.applyWidth(
             StyleSheet.compose(
-              GlobalStyles.ButtonStyles(theme)['Button'].style,
-              {
-                backgroundColor: palettes.App.Peoplebit_Turquoise,
-                borderRadius: 12,
-                color: palettes.App.Communical_Yellow_Emoticons,
-                fontFamily: 'Inter_600SemiBold',
-                marginLeft: 30,
-                marginRight: 30,
-              }
+              GlobalStyles.TextInputStyles(theme)['Text Input'].style,
+              theme.typography.body2,
+              { color: palettes.App.Communical_Yellow_Emoticons, height: 50 }
             ),
             dimensions.width
           )}
-          title={'Soccer'}
+          value={textInputValue}
         />
-        <Spacer bottom={8} left={8} right={8} top={8} />
-        {/* Button 4 */}
+      </View>
+      {/* Spacer 2 */}
+      <Spacer bottom={8} left={8} right={8} top={8} />
+      {/* View 4 */}
+      <View>
         <Button
           accessible={true}
           iconPosition={'left'}
           onPress={() => {
-            try {
-              setGlobalVariableValue({
-                key: 'Sport',
-                value: 'Rugby',
-              });
-              setGlobalVariableValue({
-                key: 'SportValue',
-                value: 3,
-              });
-              navigation.navigate('SignUpAddTeamIDScreen');
-            } catch (err) {
-              console.error(err);
-            }
+            const handler = async () => {
+              try {
+                const API = (
+                  await ShootrSupabaseDBAPIApi.teamListGetByTeamIDGET(
+                    Constants,
+                    { TeamID: Constants['TeamID'] }
+                  )
+                )?.json;
+                const APILocation = API && API[0]?.Location;
+                setGlobalVariableValue({
+                  key: 'Location',
+                  value: API && API[0]?.Location,
+                });
+                const APIGrade = API && API[0]?.Division;
+                setGlobalVariableValue({
+                  key: 'Grade',
+                  value: API && API[0]?.Division,
+                });
+                const APITeamName = API && API[0]?.TeamName;
+                setGlobalVariableValue({
+                  key: 'HomeTeam',
+                  value: API && API[0]?.TeamName,
+                });
+                navigation.navigate('TeamIDSignUpConfirmationScreen');
+              } catch (err) {
+                console.error(err);
+              }
+            };
+            handler();
           }}
           {...GlobalStyles.ButtonStyles(theme)['Button'].props}
           style={StyleSheet.applyWidth(
             StyleSheet.compose(
               GlobalStyles.ButtonStyles(theme)['Button'].style,
+              theme.typography.button,
               {
-                backgroundColor: palettes.App.Peoplebit_Turquoise,
-                borderRadius: 12,
-                color: palettes.App.Communical_Yellow_Emoticons,
-                fontFamily: 'Inter_600SemiBold',
-                marginLeft: 30,
-                marginRight: 30,
+                backgroundColor: palettes.App.Communical_Yellow_Emoticons,
+                borderRadius: 20,
+                color: palettes.App.Peoplebit_Turquoise,
+                marginLeft: 40,
+                marginRight: 40,
               }
             ),
             dimensions.width
           )}
-          title={'Rugby Union'}
-        />
-        {/* Spacer 2 */}
-        <Spacer bottom={8} left={8} right={8} top={8} />
-        {/* Button 5 */}
-        <Button
-          accessible={true}
-          iconPosition={'left'}
-          onPress={() => {
-            try {
-              setGlobalVariableValue({
-                key: 'Sport',
-                value: 'GAA',
-              });
-              setGlobalVariableValue({
-                key: 'SportValue',
-                value: 2,
-              });
-              navigation.navigate('SignUpAddTeamIDScreen');
-            } catch (err) {
-              console.error(err);
-            }
-          }}
-          {...GlobalStyles.ButtonStyles(theme)['Button'].props}
-          style={StyleSheet.applyWidth(
-            StyleSheet.compose(
-              GlobalStyles.ButtonStyles(theme)['Button'].style,
-              {
-                backgroundColor: palettes.App.Peoplebit_Turquoise,
-                borderRadius: 12,
-                color: palettes.App.Communical_Yellow_Emoticons,
-                fontFamily: 'Inter_600SemiBold',
-                marginLeft: 30,
-                marginRight: 30,
-              }
-            ),
-            dimensions.width
-          )}
-          title={'GAA'}
+          title={'Continue'}
         />
       </View>
     </ScreenContainer>
   );
 };
 
-export default withTheme(AddUserChooseSportScreen);
+export default withTheme(SignUpAddTeamIDScreen);

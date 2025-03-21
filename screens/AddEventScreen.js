@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Button,
   DatePicker,
+  ExpoImage,
   NumberInput,
   ScreenContainer,
   SimpleStyleKeyboardAwareScrollView,
@@ -12,9 +13,11 @@ import { View } from 'react-native';
 import * as GlobalStyles from '../GlobalStyles.js';
 import * as ShootrSupabaseDBAPIApi from '../apis/ShootrSupabaseDBAPIApi.js';
 import * as GlobalVariables from '../config/GlobalVariableContext';
+import Images from '../config/Images';
 import palettes from '../themes/palettes';
 import Breakpoints from '../utils/Breakpoints';
 import * as StyleSheet from '../utils/StyleSheet';
+import imageSource from '../utils/imageSource';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
 const defaultProps = { Date: null };
@@ -48,6 +51,32 @@ const AddEventScreen = props => {
       hasBottomSafeArea={false}
       scrollable={true}
     >
+      <View
+        style={StyleSheet.applyWidth(
+          { alignItems: 'center' },
+          dimensions.width
+        )}
+      >
+        <ExpoImage
+          allowDownscaling={true}
+          cachePolicy={'disk'}
+          contentPosition={'center'}
+          resizeMode={'cover'}
+          transitionDuration={300}
+          transitionEffect={'cross-dissolve'}
+          transitionTiming={'ease-in-out'}
+          {...GlobalStyles.ExpoImageStyles(theme)['Image 4'].props}
+          source={imageSource(Images['shootrredesigninappimage'])}
+          style={StyleSheet.applyWidth(
+            StyleSheet.compose(
+              GlobalStyles.ExpoImageStyles(theme)['Image 4'].style,
+              { height: 200, width: 200 }
+            ),
+            dimensions.width
+          )}
+        />
+      </View>
+
       <SimpleStyleKeyboardAwareScrollView
         enableAutomaticScroll={false}
         enableOnAndroid={false}
@@ -57,7 +86,6 @@ const AddEventScreen = props => {
         showsVerticalScrollIndicator={false}
         style={StyleSheet.applyWidth(
           {
-            backgroundColor: palettes.App.Communial_Icon_BG,
             height: '100%',
             paddingBottom: 16,
             paddingLeft: 16,
@@ -278,7 +306,7 @@ const AddEventScreen = props => {
                     Notification: 'New Event',
                     TeamID: Constants['TeamID'],
                     TeamName: Constants['HomeTeam'],
-                    createdat: '19:18:55',
+                    date: datePickerValue,
                   })
                 )?.json;
                 navigation.navigate('TeamHomeScreen');
@@ -332,7 +360,7 @@ const AddEventScreen = props => {
                     Notification: 'New Event',
                     TeamID: Constants['TeamID'],
                     TeamName: Constants['HomeTeam'],
-                    createdat: '19:18:55',
+                    date: new Date(),
                   })
                 )?.json;
                 navigation.navigate('AddEventScreen');

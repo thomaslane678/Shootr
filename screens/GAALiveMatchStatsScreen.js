@@ -976,42 +976,6 @@ const GAALiveMatchStatsScreen = props => {
                     {Constants['ChosenStat']}
                   </Text>
                 </View>
-                {/* View 3 */}
-                <View>
-                  <Text
-                    accessible={true}
-                    selectable={false}
-                    {...GlobalStyles.TextStyles(theme)['Text'].props}
-                    style={StyleSheet.applyWidth(
-                      StyleSheet.compose(
-                        GlobalStyles.TextStyles(theme)['Text'].style,
-                        { fontFamily: 'Inter_600SemiBold', fontSize: 16 }
-                      ),
-                      dimensions.width
-                    )}
-                  >
-                    {'Total:'}
-                  </Text>
-                  {/* Text 2 */}
-                  <Text
-                    accessible={true}
-                    selectable={false}
-                    {...GlobalStyles.TextStyles(theme)['Text'].props}
-                    style={StyleSheet.applyWidth(
-                      StyleSheet.compose(
-                        GlobalStyles.TextStyles(theme)['Text'].style,
-                        {
-                          alignSelf: 'center',
-                          fontFamily: 'Inter_600SemiBold',
-                          fontSize: 18,
-                        }
-                      ),
-                      dimensions.width
-                    )}
-                  >
-                    {Constants['TotalStat']}
-                  </Text>
-                </View>
               </View>
             )}
           </>

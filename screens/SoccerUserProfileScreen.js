@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Button,
+  Divider,
   Icon,
   ScreenContainer,
   SimpleStyleFlatList,
@@ -40,6 +41,161 @@ const SoccerUserProfileScreen = props => {
         dimensions.width
       )}
     >
+      {/* Dashboard */}
+      <View>
+        {/* Heading */}
+        <Text
+          accessible={true}
+          selectable={false}
+          style={StyleSheet.applyWidth(
+            {
+              alignSelf: 'center',
+              color: theme.colors.text.strong,
+              fontFamily: 'Inter_500Medium',
+              fontSize: 21,
+            },
+            dimensions.width
+          )}
+        >
+          {'Player Dashboard'}
+        </Text>
+
+        <View
+          style={StyleSheet.applyWidth(
+            {
+              flexDirection: 'row',
+              flexWrap: 'nowrap',
+              justifyContent: 'center',
+            },
+            dimensions.width
+          )}
+        >
+          <Button
+            accessible={true}
+            iconPosition={'left'}
+            onPress={() => {
+              try {
+                navigation.navigate('SoccerUserProfileScreen');
+              } catch (err) {
+                console.error(err);
+              }
+            }}
+            {...GlobalStyles.ButtonStyles(theme)['Button'].props}
+            style={StyleSheet.applyWidth(
+              StyleSheet.compose(
+                GlobalStyles.ButtonStyles(theme)['Button'].style,
+                {
+                  backgroundColor: palettes.App.Communical_Yellow_Emoticons,
+                  borderRadius: null,
+                  color: palettes.App.Peoplebit_Turquoise,
+                  fontFamily: 'Inter_600SemiBold',
+                  width: '33%',
+                }
+              ),
+              dimensions.width
+            )}
+            title={'The Numbers'}
+          />
+          {/* Button 2 */}
+          <Button
+            accessible={true}
+            iconPosition={'left'}
+            onPress={() => {
+              try {
+                navigation.navigate('SoccerAdvancedAnalyticsAllSeasonScreen');
+              } catch (err) {
+                console.error(err);
+              }
+            }}
+            {...GlobalStyles.ButtonStyles(theme)['Button'].props}
+            style={StyleSheet.applyWidth(
+              StyleSheet.compose(
+                GlobalStyles.ButtonStyles(theme)['Button'].style,
+                {
+                  backgroundColor: palettes.App.Communical_Yellow_Emoticons,
+                  borderRadius: null,
+                  color: palettes.App.Peoplebit_Turquoise,
+                  fontFamily: 'Inter_600SemiBold',
+                  width: '33%',
+                }
+              ),
+              dimensions.width
+            )}
+            title={'Pitch View\nAll Season'}
+          />
+          {/* Button 3 */}
+          <Button
+            accessible={true}
+            iconPosition={'left'}
+            onPress={() => {
+              try {
+                navigation.navigate('SoccerAdvancedAnalyticsByMatchScreen');
+              } catch (err) {
+                console.error(err);
+              }
+            }}
+            {...GlobalStyles.ButtonStyles(theme)['Button'].props}
+            style={StyleSheet.applyWidth(
+              StyleSheet.compose(
+                GlobalStyles.ButtonStyles(theme)['Button'].style,
+                {
+                  backgroundColor: palettes.App.Communical_Yellow_Emoticons,
+                  borderRadius: null,
+                  color: palettes.App.Peoplebit_Turquoise,
+                  fontFamily: 'Inter_600SemiBold',
+                  width: '33%',
+                }
+              ),
+              dimensions.width
+            )}
+            title={'Pitch View\nBy Match'}
+          />
+        </View>
+        {/* View 2 */}
+        <View
+          style={StyleSheet.applyWidth(
+            { flexDirection: 'row', justifyContent: 'center' },
+            dimensions.width
+          )}
+        >
+          <Divider
+            {...GlobalStyles.DividerStyles(theme)['Divider'].props}
+            color={palettes.App.Peoplebit_Turquoise}
+            style={StyleSheet.applyWidth(
+              StyleSheet.compose(
+                GlobalStyles.DividerStyles(theme)['Divider'].style,
+                { height: 5, width: '33%' }
+              ),
+              dimensions.width
+            )}
+          />
+          {/* Divider 2 */}
+          <Divider
+            {...GlobalStyles.DividerStyles(theme)['Divider'].props}
+            color={theme.colors.background.base}
+            style={StyleSheet.applyWidth(
+              StyleSheet.compose(
+                GlobalStyles.DividerStyles(theme)['Divider'].style,
+                { height: 5, width: '33%' }
+              ),
+              dimensions.width
+            )}
+          />
+          {/* Divider 3 */}
+          <Divider
+            color={theme.colors.border.base}
+            {...GlobalStyles.DividerStyles(theme)['Divider'].props}
+            style={StyleSheet.applyWidth(
+              StyleSheet.compose(
+                GlobalStyles.DividerStyles(theme)['Divider'].style,
+                { height: 5, width: '33%' }
+              ),
+              dimensions.width
+            )}
+          />
+        </View>
+      </View>
+
       <SimpleStyleScrollView
         bounces={true}
         horizontal={false}
@@ -71,7 +227,7 @@ const SoccerUserProfileScreen = props => {
               <Image
                 resizeMode={'cover'}
                 {...GlobalStyles.ImageStyles(theme)['Image 2'].props}
-                source={imageSource(Images['ShootrBigLogoTransparent'])}
+                source={imageSource(Images['shootrredesigninappimage'])}
                 style={StyleSheet.applyWidth(
                   GlobalStyles.ImageStyles(theme)['Image 2'].style,
                   dimensions.width
@@ -1614,8 +1770,37 @@ const SoccerUserProfileScreen = props => {
           )}
           title={'Add New TeamID'}
         />
+        {/* Spacer 3 */}
+        <Spacer bottom={8} left={8} right={8} top={8} />
+        {/* Button 3 */}
+        <Button
+          accessible={true}
+          iconPosition={'left'}
+          onPress={() => {
+            try {
+              navigation.navigate('DeleteTeamIDScreen');
+            } catch (err) {
+              console.error(err);
+            }
+          }}
+          {...GlobalStyles.ButtonStyles(theme)['Button'].props}
+          style={StyleSheet.applyWidth(
+            StyleSheet.compose(
+              GlobalStyles.ButtonStyles(theme)['Button'].style,
+              {
+                backgroundColor: palettes.App.NFT_TIME_Red,
+                borderRadius: 12,
+                color: palettes.App.NFT_White_v2,
+                marginLeft: 20,
+                marginRight: 20,
+              }
+            ),
+            dimensions.width
+          )}
+          title={'Delete TeamID'}
+        />
       </SimpleStyleScrollView>
-      {/* Menu Tab */}
+      {/* Final Menu */}
       <View
         style={StyleSheet.applyWidth(
           {
@@ -1699,7 +1884,45 @@ const SoccerUserProfileScreen = props => {
           </View>
         </Touchable>
         {/* Profile Tab */}
-        <Touchable activeOpacity={0.8} disabledOpacity={0.8}>
+        <Touchable
+          onPress={() => {
+            try {
+              if (Constants['SportValue'] === 2) {
+                navigation.navigate('GAAUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 1) {
+                navigation.navigate('SoccerUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 3) {
+                navigation.navigate('RugbyUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 6) {
+                navigation.navigate('SoccerUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 7) {
+                navigation.navigate('GAAUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 8) {
+                navigation.navigate('RugbyUserProfileScreen');
+              } else {
+              }
+            } catch (err) {
+              console.error(err);
+            }
+          }}
+          activeOpacity={0.8}
+          disabledOpacity={0.8}
+        >
           <View
             style={StyleSheet.applyWidth(
               {

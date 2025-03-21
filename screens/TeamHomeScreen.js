@@ -16,6 +16,7 @@ import { Fetch } from 'react-request';
 import * as GlobalStyles from '../GlobalStyles.js';
 import * as ShootrSupabaseDBAPIApi from '../apis/ShootrSupabaseDBAPIApi.js';
 import * as GlobalVariables from '../config/GlobalVariableContext';
+import Images from '../config/Images';
 import palettes from '../themes/palettes';
 import Breakpoints from '../utils/Breakpoints';
 import * as StyleSheet from '../utils/StyleSheet';
@@ -64,7 +65,10 @@ const TeamHomeScreen = props => {
           <Circle size={50}>
             <Image
               resizeMode={'cover'}
-              source={imageSource(`${Constants['UserPic']}`)}
+              source={
+                imageSource(Images['shootrredesigninappimage']) ??
+                imageSource(`${Constants['UserPic']}`)
+              }
               style={StyleSheet.applyWidth(
                 { height: 50, width: 50 },
                 dimensions.width
@@ -75,10 +79,10 @@ const TeamHomeScreen = props => {
           <View
             style={StyleSheet.applyWidth({ marginLeft: 10 }, dimensions.width)}
           >
-            <ShootrSupabaseDBAPIApi.FetchTeamListGetByUsernameGET
+            <ShootrSupabaseDBAPIApi.FetchTeamListGetByTeamIDGET
               TeamID={Constants['TeamID']}
             >
-              {({ loading, error, data, refetchTeamListGetByUsername }) => {
+              {({ loading, error, data, refetchTeamListGetByTeamID }) => {
                 const fetchData = data?.json;
                 if (loading) {
                   return <ActivityIndicator />;
@@ -152,28 +156,34 @@ const TeamHomeScreen = props => {
                   />
                 );
               }}
-            </ShootrSupabaseDBAPIApi.FetchTeamListGetByUsernameGET>
+            </ShootrSupabaseDBAPIApi.FetchTeamListGetByTeamIDGET>
           </View>
         </View>
-
-        <Touchable
-          onPress={() => {
-            try {
-              navigation.navigate('ChooseEventToCreateScreen');
-            } catch (err) {
-              console.error(err);
-            }
-          }}
-        >
-          <Icon
-            size={24}
-            color={palettes.App.Peoplebit_Turquoise}
-            name={'AntDesign/pluscircleo'}
-            style={StyleSheet.applyWidth({ opacity: 0.5 }, dimensions.width)}
-          />
-        </Touchable>
+        <>
+          {!(Constants['AccountType'] === 101) ? null : (
+            <Touchable
+              onPress={() => {
+                try {
+                  navigation.navigate('ChooseEventToCreateScreen');
+                } catch (err) {
+                  console.error(err);
+                }
+              }}
+            >
+              <Icon
+                size={24}
+                color={palettes.App.Peoplebit_Turquoise}
+                name={'AntDesign/pluscircleo'}
+                style={StyleSheet.applyWidth(
+                  { opacity: 0.5 },
+                  dimensions.width
+                )}
+              />
+            </Touchable>
+          )}
+        </>
       </View>
-      {/* Quick Links (To Be Defined) */}
+      {/* Quick Links */}
       <View
         style={StyleSheet.applyWidth(
           {
@@ -310,12 +320,27 @@ const TeamHomeScreen = props => {
                 } else {
                 }
 
+                if (Constants['SportValue'] === 7) {
+                  navigation.navigate('GAATeamStatsTheNumbersScreen');
+                } else {
+                }
+
                 if (Constants['SportValue'] === 1) {
                   navigation.navigate('SoccerTeamStatsTheNumbersScreen');
                 } else {
                 }
 
+                if (Constants['SportValue'] === 6) {
+                  navigation.navigate('SoccerTeamStatsTheNumbersScreen');
+                } else {
+                }
+
                 if (Constants['SportValue'] === 3) {
+                  navigation.navigate('RugbyTeamStatsTheNumbersScreen');
+                } else {
+                }
+
+                if (Constants['SportValue'] === 8) {
                   navigation.navigate('RugbyTeamStatsTheNumbersScreen');
                 } else {
                 }
@@ -923,7 +948,7 @@ const TeamHomeScreen = props => {
           </View>
         </View>
       </SimpleStyleScrollView>
-      {/* Menu Tab */}
+      {/* Final Menu */}
       <View
         style={StyleSheet.applyWidth(
           {
@@ -1016,11 +1041,26 @@ const TeamHomeScreen = props => {
               }
 
               if (Constants['SportValue'] === 1) {
-                navigation.navigate('SoccerUserProfileScreen');
+                navigation.navigate('SoccerUserProfileBasicScreen');
               } else {
               }
 
               if (Constants['SportValue'] === 3) {
+                navigation.navigate('RugbyUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 6) {
+                navigation.navigate('SoccerUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 7) {
+                navigation.navigate('GAAUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 8) {
                 navigation.navigate('RugbyUserProfileScreen');
               } else {
               }

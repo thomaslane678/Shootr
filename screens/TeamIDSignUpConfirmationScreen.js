@@ -16,16 +16,14 @@ import * as StyleSheet from '../utils/StyleSheet';
 import imageSource from '../utils/imageSource';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
-const AddUserChooseSportScreen = props => {
+const TeamIDSignUpConfirmationScreen = props => {
   const { theme, navigation } = props;
   const dimensions = useWindowDimensions();
   const Constants = GlobalVariables.useValues();
   const Variables = Constants;
-  const setGlobalVariableValue = GlobalVariables.useSetValue();
 
   return (
     <ScreenContainer hasSafeArea={false} scrollable={false}>
-      {/* View 2 */}
       <View
         style={StyleSheet.applyWidth(
           { alignItems: 'center', height: 150 },
@@ -51,10 +49,8 @@ const AddUserChooseSportScreen = props => {
           )}
         />
       </View>
-      {/* View 3 */}
-      <View>
-        {/* Spacer 2 */}
-        <Spacer bottom={8} left={8} right={8} top={8} />
+
+      <View style={StyleSheet.applyWidth({ height: 300 }, dimensions.width)}>
         <Text
           accessible={true}
           selectable={false}
@@ -66,14 +62,38 @@ const AddUserChooseSportScreen = props => {
               {
                 alignSelf: 'center',
                 fontFamily: 'Inter_600SemiBold',
-                fontSize: 30,
+                fontSize: 18,
               }
             ),
             dimensions.width
           )}
         >
-          {'Choose Sport'}
+          {'Congratulations!'}
         </Text>
+        {/* Text 3 */}
+        <Text
+          accessible={true}
+          selectable={false}
+          {...GlobalStyles.TextStyles(theme)['Text 2'].props}
+          style={StyleSheet.applyWidth(
+            StyleSheet.compose(
+              GlobalStyles.TextStyles(theme)['Text 2'].style,
+              theme.typography.body1,
+              {
+                alignSelf: 'center',
+                fontFamily: 'Inter_400Regular',
+                fontSize: 14,
+                textAlign: 'center',
+              }
+            ),
+            dimensions.width
+          )}
+        >
+          {
+            "We have added your TeamID details - if the information below doesn't look correct, please go back and review the TeamID you have entered"
+          }
+        </Text>
+        <Spacer bottom={8} left={8} right={8} top={8} />
         {/* Text 2 */}
         <Text
           accessible={true}
@@ -83,42 +103,52 @@ const AddUserChooseSportScreen = props => {
             StyleSheet.compose(
               GlobalStyles.TextStyles(theme)['Text 2'].style,
               theme.typography.body1,
+              { alignSelf: 'center', fontFamily: 'Inter_400Regular' }
+            ),
+            dimensions.width
+          )}
+        >
+          {'Your Team information is'}
+        </Text>
+        {/* Text 5 */}
+        <Text
+          accessible={true}
+          selectable={false}
+          {...GlobalStyles.TextStyles(theme)['Text 2'].props}
+          style={StyleSheet.applyWidth(
+            StyleSheet.compose(
+              GlobalStyles.TextStyles(theme)['Text 2'].style,
+              theme.typography.body1,
               {
                 alignSelf: 'center',
-                fontFamily: 'Inter_600SemiBold',
-                fontSize: 15,
+                fontFamily: 'Inter_700Bold',
+                fontSize: 20,
+                paddingTop: 10,
                 textAlign: 'center',
               }
             ),
             dimensions.width
           )}
         >
-          {'Welcome to Shootr - first choose your sport to begin'}
+          {'Team: '}
+          {Constants['HomeTeam']}
+          {' \nLocation: '}
+          {Constants['Location']}
+          {' \nTeamID: '}
+          {Constants['TeamID']}
+          {'\nDivision: '}
+          {Constants['Grade']}
         </Text>
-        <Spacer bottom={8} left={8} right={8} top={8} />
       </View>
-
-      <View
-        style={StyleSheet.applyWidth(
-          { height: '50%', justifyContent: 'flex-start' },
-          dimensions.width
-        )}
-      >
-        {/* Button 3 */}
+      {/* View 2 */}
+      <View>
+        <Spacer left={8} right={8} bottom={10} top={10} />
         <Button
           accessible={true}
           iconPosition={'left'}
           onPress={() => {
             try {
-              setGlobalVariableValue({
-                key: 'Sport',
-                value: 'Football',
-              });
-              setGlobalVariableValue({
-                key: 'SportValue',
-                value: 1,
-              });
-              navigation.navigate('SignUpAddTeamIDScreen');
+              navigation.navigate('AddUserScreen');
             } catch (err) {
               console.error(err);
             }
@@ -127,97 +157,22 @@ const AddUserChooseSportScreen = props => {
           style={StyleSheet.applyWidth(
             StyleSheet.compose(
               GlobalStyles.ButtonStyles(theme)['Button'].style,
+              theme.typography.button,
               {
                 backgroundColor: palettes.App.Peoplebit_Turquoise,
                 borderRadius: 12,
                 color: palettes.App.Communical_Yellow_Emoticons,
-                fontFamily: 'Inter_600SemiBold',
-                marginLeft: 30,
-                marginRight: 30,
+                marginLeft: 40,
+                marginRight: 40,
               }
             ),
             dimensions.width
           )}
-          title={'Soccer'}
-        />
-        <Spacer bottom={8} left={8} right={8} top={8} />
-        {/* Button 4 */}
-        <Button
-          accessible={true}
-          iconPosition={'left'}
-          onPress={() => {
-            try {
-              setGlobalVariableValue({
-                key: 'Sport',
-                value: 'Rugby',
-              });
-              setGlobalVariableValue({
-                key: 'SportValue',
-                value: 3,
-              });
-              navigation.navigate('SignUpAddTeamIDScreen');
-            } catch (err) {
-              console.error(err);
-            }
-          }}
-          {...GlobalStyles.ButtonStyles(theme)['Button'].props}
-          style={StyleSheet.applyWidth(
-            StyleSheet.compose(
-              GlobalStyles.ButtonStyles(theme)['Button'].style,
-              {
-                backgroundColor: palettes.App.Peoplebit_Turquoise,
-                borderRadius: 12,
-                color: palettes.App.Communical_Yellow_Emoticons,
-                fontFamily: 'Inter_600SemiBold',
-                marginLeft: 30,
-                marginRight: 30,
-              }
-            ),
-            dimensions.width
-          )}
-          title={'Rugby Union'}
-        />
-        {/* Spacer 2 */}
-        <Spacer bottom={8} left={8} right={8} top={8} />
-        {/* Button 5 */}
-        <Button
-          accessible={true}
-          iconPosition={'left'}
-          onPress={() => {
-            try {
-              setGlobalVariableValue({
-                key: 'Sport',
-                value: 'GAA',
-              });
-              setGlobalVariableValue({
-                key: 'SportValue',
-                value: 2,
-              });
-              navigation.navigate('SignUpAddTeamIDScreen');
-            } catch (err) {
-              console.error(err);
-            }
-          }}
-          {...GlobalStyles.ButtonStyles(theme)['Button'].props}
-          style={StyleSheet.applyWidth(
-            StyleSheet.compose(
-              GlobalStyles.ButtonStyles(theme)['Button'].style,
-              {
-                backgroundColor: palettes.App.Peoplebit_Turquoise,
-                borderRadius: 12,
-                color: palettes.App.Communical_Yellow_Emoticons,
-                fontFamily: 'Inter_600SemiBold',
-                marginLeft: 30,
-                marginRight: 30,
-              }
-            ),
-            dimensions.width
-          )}
-          title={'GAA'}
+          title={'Create Profile'}
         />
       </View>
     </ScreenContainer>
   );
 };
 
-export default withTheme(AddUserChooseSportScreen);
+export default withTheme(TeamIDSignUpConfirmationScreen);

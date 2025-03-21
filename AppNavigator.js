@@ -28,6 +28,10 @@ import ChooseGoalScreen from './screens/ChooseGoalScreen';
 import ChooseTeamScreen from './screens/ChooseTeamScreen';
 import ChooseYourGoalScreen from './screens/ChooseYourGoalScreen';
 import ConfirmAttendanceScreen from './screens/ConfirmAttendanceScreen';
+import DeleteEventScreen from './screens/DeleteEventScreen';
+import DeleteMatchScreen from './screens/DeleteMatchScreen';
+import DeleteTeamIDConfirmScreen from './screens/DeleteTeamIDConfirmScreen';
+import DeleteTeamIDScreen from './screens/DeleteTeamIDScreen';
 import EventAttendanceScreen from './screens/EventAttendanceScreen';
 import EventScheduleScreen from './screens/EventScheduleScreen';
 import FixtureListScreen from './screens/FixtureListScreen';
@@ -60,7 +64,7 @@ import LogInScreen from './screens/LogInScreen';
 import MessagesScreen from './screens/MessagesScreen';
 import MyTeamScreen from './screens/MyTeamScreen';
 import NotificationsScreen from './screens/NotificationsScreen';
-import PlayerSignUpConfirmationScreen from './screens/PlayerSignUpConfirmationScreen';
+import PlayerSignUpConfirmation2Screen from './screens/PlayerSignUpConfirmation2Screen';
 import ResultListGAAScreen from './screens/ResultListGAAScreen';
 import ResultListScreen from './screens/ResultListScreen';
 import RugbyAddMatchScreen from './screens/RugbyAddMatchScreen';
@@ -87,6 +91,7 @@ import RugbyTeamStatsTheNumbersScreen from './screens/RugbyTeamStatsTheNumbersSc
 import RugbyUserProfileBasicScreen from './screens/RugbyUserProfileBasicScreen';
 import RugbyUserProfileScreen from './screens/RugbyUserProfileScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import SignUpAddTeamIDScreen from './screens/SignUpAddTeamIDScreen';
 import SignUpInfoScreen from './screens/SignUpInfoScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import SoccerAddMatchScreen from './screens/SoccerAddMatchScreen';
@@ -117,14 +122,15 @@ import SoccerPickTeam433Screen from './screens/SoccerPickTeam433Screen';
 import SoccerPickTeam442Screen from './screens/SoccerPickTeam442Screen';
 import SoccerPickTeam541Screen from './screens/SoccerPickTeam541Screen';
 import SoccerTeamListScreen from './screens/SoccerTeamListScreen';
-import SoccerTeamStats2TheVisualsScreen from './screens/SoccerTeamStats2TheVisualsScreen';
 import SoccerTeamStatsPitchViewAllSeasonScreen from './screens/SoccerTeamStatsPitchViewAllSeasonScreen';
 import SoccerTeamStatsPitchViewByMatchScreen from './screens/SoccerTeamStatsPitchViewByMatchScreen';
 import SoccerTeamStatsTheNumbersScreen from './screens/SoccerTeamStatsTheNumbersScreen';
 import SoccerUserProfileBasicScreen from './screens/SoccerUserProfileBasicScreen';
 import SoccerUserProfileScreen from './screens/SoccerUserProfileScreen';
 import TeamHomeScreen from './screens/TeamHomeScreen';
+import TeamIDSignUpConfirmationScreen from './screens/TeamIDSignUpConfirmationScreen';
 import TeamSignUpConfirmationScreen from './screens/TeamSignUpConfirmationScreen';
+import TeamSignUpExplainerScreen from './screens/TeamSignUpExplainerScreen';
 import TeamStatsResultListScreen from './screens/TeamStatsResultListScreen';
 import UpdateProfileAddPatchAPIScreen from './screens/UpdateProfileAddPatchAPIScreen';
 import palettes from './themes/palettes';
@@ -374,6 +380,34 @@ export default function RootAppNavigator() {
           })}
         />
         <Stack.Screen
+          name="DeleteEventScreen"
+          component={DeleteEventScreen}
+          options={({ navigation }) => ({
+            title: 'Delete Event',
+          })}
+        />
+        <Stack.Screen
+          name="DeleteMatchScreen"
+          component={DeleteMatchScreen}
+          options={({ navigation }) => ({
+            title: 'Delete Match',
+          })}
+        />
+        <Stack.Screen
+          name="DeleteTeamIDConfirmScreen"
+          component={DeleteTeamIDConfirmScreen}
+          options={({ navigation }) => ({
+            title: 'Delete TeamID Confirm',
+          })}
+        />
+        <Stack.Screen
+          name="DeleteTeamIDScreen"
+          component={DeleteTeamIDScreen}
+          options={({ navigation }) => ({
+            title: 'Delete TeamID',
+          })}
+        />
+        <Stack.Screen
           name="EventAttendanceScreen"
           component={EventAttendanceScreen}
           options={({ navigation }) => ({
@@ -598,10 +632,10 @@ export default function RootAppNavigator() {
           })}
         />
         <Stack.Screen
-          name="PlayerSignUpConfirmationScreen"
-          component={PlayerSignUpConfirmationScreen}
+          name="PlayerSignUpConfirmation2Screen"
+          component={PlayerSignUpConfirmation2Screen}
           options={({ navigation }) => ({
-            title: 'Player Sign Up Confirmation',
+            title: 'Player Sign Up Confirmation 2',
           })}
         />
         <Stack.Screen
@@ -784,6 +818,13 @@ export default function RootAppNavigator() {
           component={SettingsScreen}
           options={({ navigation }) => ({
             title: 'Settings',
+          })}
+        />
+        <Stack.Screen
+          name="SignUpAddTeamIDScreen"
+          component={SignUpAddTeamIDScreen}
+          options={({ navigation }) => ({
+            title: 'Sign Up Add TeamID',
           })}
         />
         <Stack.Screen
@@ -997,13 +1038,6 @@ export default function RootAppNavigator() {
           })}
         />
         <Stack.Screen
-          name="SoccerTeamStats2TheVisualsScreen"
-          component={SoccerTeamStats2TheVisualsScreen}
-          options={({ navigation }) => ({
-            title: 'Soccer Team Stats 2 - The Visuals',
-          })}
-        />
-        <Stack.Screen
           name="SoccerTeamStatsPitchViewAllSeasonScreen"
           component={SoccerTeamStatsPitchViewAllSeasonScreen}
           options={({ navigation }) => ({
@@ -1046,10 +1080,24 @@ export default function RootAppNavigator() {
           })}
         />
         <Stack.Screen
+          name="TeamIDSignUpConfirmationScreen"
+          component={TeamIDSignUpConfirmationScreen}
+          options={({ navigation }) => ({
+            title: 'TeamID Sign Up Confirmation',
+          })}
+        />
+        <Stack.Screen
           name="TeamSignUpConfirmationScreen"
           component={TeamSignUpConfirmationScreen}
           options={({ navigation }) => ({
             title: 'Team Sign Up Confirmation',
+          })}
+        />
+        <Stack.Screen
+          name="TeamSignUpExplainerScreen"
+          component={TeamSignUpExplainerScreen}
+          options={({ navigation }) => ({
+            title: 'Team Sign Up Explainer',
           })}
         />
         <Stack.Screen

@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  ExpoImage,
   Icon,
   ScreenContainer,
   SimpleStyleFlatList,
@@ -9,10 +10,11 @@ import {
   withTheme,
 } from '@draftbit/ui';
 import { useIsFocused } from '@react-navigation/native';
-import { ActivityIndicator, Image, Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 import { Fetch } from 'react-request';
 import * as ShootrSupabaseDBAPIApi from '../apis/ShootrSupabaseDBAPIApi.js';
 import * as GlobalVariables from '../config/GlobalVariableContext';
+import Images from '../config/Images';
 import formatCurrency from '../global-functions/formatCurrency';
 import palettes from '../themes/palettes';
 import Breakpoints from '../utils/Breakpoints';
@@ -205,9 +207,19 @@ const TeamStatsResultListScreen = props => {
                               dimensions.width
                             )}
                           >
-                            <Image
+                            <ExpoImage
+                              allowDownscaling={true}
+                              cachePolicy={'disk'}
+                              contentPosition={'center'}
                               resizeMode={'cover'}
-                              source={imageSource(`${listData?.image_thumb}`)}
+                              transitionDuration={300}
+                              transitionEffect={'cross-dissolve'}
+                              transitionTiming={'ease-in-out'}
+                              source={
+                                imageSource(
+                                  Images['shootrredesigninappimage']
+                                ) ?? imageSource(`${listData?.image_thumb}`)
+                              }
                               style={StyleSheet.applyWidth(
                                 { height: 80, width: 80 },
                                 dimensions.width

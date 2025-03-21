@@ -358,7 +358,7 @@ const RugbyAddMatchScreen = props => {
                     Notification: 'New Match',
                     TeamID: Constants['TeamID'],
                     TeamName: Constants['HomeTeam'],
-                    createdat: new Date(),
+                    date: new Date(),
                   })
                 )?.json;
                 navigation.navigate('TeamHomeScreen');
@@ -413,7 +413,7 @@ const RugbyAddMatchScreen = props => {
                     Notification: 'New Match',
                     TeamID: Constants['TeamID'],
                     TeamName: Constants['HomeTeam'],
-                    createdat: new Date(),
+                    date: new Date(),
                   })
                 )?.json;
                 navigation.navigate('RugbyAddMatchScreen');

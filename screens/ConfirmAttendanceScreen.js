@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Button,
+  ExpoImage,
   Icon,
   ScreenContainer,
   SimpleStyleFlatList,
@@ -9,7 +10,7 @@ import {
   withTheme,
 } from '@draftbit/ui';
 import { useIsFocused } from '@react-navigation/native';
-import { ActivityIndicator, Image, Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 import { Fetch } from 'react-request';
 import * as GlobalStyles from '../GlobalStyles.js';
 import * as ShootrSupabaseDBAPIApi from '../apis/ShootrSupabaseDBAPIApi.js';
@@ -37,13 +38,19 @@ const ConfirmAttendanceScreen = props => {
           dimensions.width
         )}
       >
-        <Image
+        <ExpoImage
+          allowDownscaling={true}
+          cachePolicy={'disk'}
+          contentPosition={'center'}
           resizeMode={'cover'}
-          {...GlobalStyles.ImageStyles(theme)['Image 2'].props}
-          source={imageSource(Images['ShootrBigLogoTransparent'])}
+          transitionDuration={300}
+          transitionEffect={'cross-dissolve'}
+          transitionTiming={'ease-in-out'}
+          {...GlobalStyles.ExpoImageStyles(theme)['Image 4'].props}
+          source={imageSource(Images['shootrredesigninappimage'])}
           style={StyleSheet.applyWidth(
             StyleSheet.compose(
-              GlobalStyles.ImageStyles(theme)['Image 2'].style,
+              GlobalStyles.ExpoImageStyles(theme)['Image 4'].style,
               { height: 200, width: 200 }
             ),
             dimensions.width
@@ -219,92 +226,98 @@ const ConfirmAttendanceScreen = props => {
         <Spacer bottom={8} left={8} right={8} top={8} />
         {/* Spacer 3 */}
         <Spacer bottom={8} left={8} right={8} top={8} />
-      </View>
-      {/* View 3 */}
-      <View
-        style={StyleSheet.applyWidth(
-          { marginLeft: 40, marginRight: 40 },
-          dimensions.width
-        )}
-      >
-        <Button
-          accessible={true}
-          iconPosition={'left'}
-          onPress={() => {
-            const handler = async () => {
-              try {
-                (
-                  await shootrSupabaseDBAPIEventAttendancePostPOST.mutateAsync({
-                    Attendance: 'Attending',
-                    EventID: Constants['EventID'],
-                    EventName: Constants['ChosenEvent'],
-                    PlayerID: Constants['Username'],
-                    PlayerName: Constants['Name'],
-                    TeamID: Constants['TeamID'],
-                  })
-                )?.json;
-                navigation.navigate('TeamHomeScreen');
-              } catch (err) {
-                console.error(err);
-              }
-            };
-            handler();
-          }}
-          {...GlobalStyles.ButtonStyles(theme)['Button'].props}
+        {/* View 3 */}
+        <View
           style={StyleSheet.applyWidth(
-            StyleSheet.compose(
-              GlobalStyles.ButtonStyles(theme)['Button'].style,
-              {
-                backgroundColor: palettes.App.Peoplebit_Turquoise,
-                color: palettes.App.Communical_Yellow_Emoticons,
-                fontFamily: 'Inter_600SemiBold',
-              }
-            ),
+            { marginLeft: 40, marginRight: 40 },
             dimensions.width
           )}
-          title={'Attending'}
-        />
-        <Spacer bottom={8} left={8} right={8} top={8} />
-        {/* Button 2 */}
-        <Button
-          accessible={true}
-          iconPosition={'left'}
-          onPress={() => {
-            const handler = async () => {
-              try {
-                (
-                  await shootrSupabaseDBAPIEventAttendancePostPOST.mutateAsync({
-                    Attendance: 'Absent',
-                    EventID: Constants['EventID'],
-                    EventName: Constants['ChosenEvent'],
-                    PlayerID: Constants['Username'],
-                    PlayerName: Constants['Name'],
-                    TeamID: Constants['TeamID'],
-                  })
-                )?.json;
-                navigation.navigate('TeamHomeScreen');
-              } catch (err) {
-                console.error(err);
-              }
-            };
-            handler();
-          }}
-          {...GlobalStyles.ButtonStyles(theme)['Button'].props}
-          style={StyleSheet.applyWidth(
-            StyleSheet.compose(
-              GlobalStyles.ButtonStyles(theme)['Button'].style,
-              {
-                backgroundColor: palettes.App.Peoplebit_Turquoise,
-                color: palettes.App.Communical_Yellow_Emoticons,
-                fontFamily: 'Inter_600SemiBold',
-              }
-            ),
-            dimensions.width
-          )}
-          title={'Not Attending'}
-        />
+        >
+          <Button
+            accessible={true}
+            iconPosition={'left'}
+            onPress={() => {
+              const handler = async () => {
+                try {
+                  (
+                    await shootrSupabaseDBAPIEventAttendancePostPOST.mutateAsync(
+                      {
+                        Attendance: 'Attending',
+                        EventID: Constants['EventID'],
+                        EventName: Constants['ChosenEvent'],
+                        PlayerID: Constants['Username'],
+                        PlayerName: Constants['Name'],
+                        TeamID: Constants['TeamID'],
+                      }
+                    )
+                  )?.json;
+                  navigation.navigate('TeamHomeScreen');
+                } catch (err) {
+                  console.error(err);
+                }
+              };
+              handler();
+            }}
+            {...GlobalStyles.ButtonStyles(theme)['Button'].props}
+            style={StyleSheet.applyWidth(
+              StyleSheet.compose(
+                GlobalStyles.ButtonStyles(theme)['Button'].style,
+                {
+                  backgroundColor: palettes.App.Peoplebit_Turquoise,
+                  color: palettes.App.Communical_Yellow_Emoticons,
+                  fontFamily: 'Inter_600SemiBold',
+                }
+              ),
+              dimensions.width
+            )}
+            title={'Attending'}
+          />
+          <Spacer bottom={8} left={8} right={8} top={8} />
+          {/* Button 2 */}
+          <Button
+            accessible={true}
+            iconPosition={'left'}
+            onPress={() => {
+              const handler = async () => {
+                try {
+                  (
+                    await shootrSupabaseDBAPIEventAttendancePostPOST.mutateAsync(
+                      {
+                        Attendance: 'Absent',
+                        EventID: Constants['EventID'],
+                        EventName: Constants['ChosenEvent'],
+                        PlayerID: Constants['Username'],
+                        PlayerName: Constants['Name'],
+                        TeamID: Constants['TeamID'],
+                      }
+                    )
+                  )?.json;
+                  navigation.navigate('TeamHomeScreen');
+                } catch (err) {
+                  console.error(err);
+                }
+              };
+              handler();
+            }}
+            {...GlobalStyles.ButtonStyles(theme)['Button'].props}
+            style={StyleSheet.applyWidth(
+              StyleSheet.compose(
+                GlobalStyles.ButtonStyles(theme)['Button'].style,
+                {
+                  backgroundColor: palettes.App.Peoplebit_Turquoise,
+                  color: palettes.App.Communical_Yellow_Emoticons,
+                  fontFamily: 'Inter_600SemiBold',
+                }
+              ),
+              dimensions.width
+            )}
+            title={'Not Attending'}
+          />
+        </View>
+        {/* Spacer 4 */}
+        <Spacer left={8} right={8} bottom={100} top={250} />
       </View>
-      {/* Updated Menu */}
+      {/* Final Menu */}
       <View
         style={StyleSheet.applyWidth(
           {
@@ -397,11 +410,26 @@ const ConfirmAttendanceScreen = props => {
               }
 
               if (Constants['SportValue'] === 1) {
-                navigation.navigate('SoccerUserProfileScreen');
+                navigation.navigate('SoccerUserProfileBasicScreen');
               } else {
               }
 
               if (Constants['SportValue'] === 3) {
+                navigation.navigate('RugbyUserProfileBasicScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 6) {
+                navigation.navigate('SoccerUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 7) {
+                navigation.navigate('GAAUserProfileScreen');
+              } else {
+              }
+
+              if (Constants['SportValue'] === 8) {
                 navigation.navigate('RugbyUserProfileScreen');
               } else {
               }

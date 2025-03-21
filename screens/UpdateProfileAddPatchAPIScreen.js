@@ -651,12 +651,14 @@ const UpdateProfileAddPatchAPIScreen = props => {
                     Basic: 'Basic',
                     Grade: 'Grade',
                     Location: 'Location',
-                    Player: radioButtonGroupValue,
                     PlayerName: PlayerName,
                     Sport: 'Sport',
+                    Sportcode: 1,
                     Team: TeamName,
                     TeamID: TeamID,
                     Username: PlayerUserName,
+                    position: 'Forward',
+                    rolecode: 101,
                   })
                 )?.json;
 

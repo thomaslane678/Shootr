@@ -40,10 +40,10 @@ const AddTeamScreen = props => {
   const [styledTextFieldValue, setStyledTextFieldValue] = React.useState('');
   const [textAreaValue, setTextAreaValue] = React.useState('');
   const [textInputValue, setTextInputValue] = React.useState('');
-  const shootrSupabaseDBAPITeamListPostPOST =
-    ShootrSupabaseDBAPIApi.useTeamListPostPOST();
   const shootrSupabaseDBAPIMatchResultsPostPOST =
     ShootrSupabaseDBAPIApi.useMatchResultsPostPOST();
+  const shootrSupabaseDBAPITeamListPostPOST =
+    ShootrSupabaseDBAPIApi.useTeamListPostPOST();
 
   return (
     <ScreenContainer
@@ -70,7 +70,7 @@ const AddTeamScreen = props => {
           transitionEffect={'cross-dissolve'}
           transitionTiming={'ease-in-out'}
           {...GlobalStyles.ExpoImageStyles(theme)['Image (default)'].props}
-          source={imageSource(Images['ShootrBigLogoTransparent'])}
+          source={imageSource(Images['shootrredesigninappimage'])}
           style={StyleSheet.applyWidth(
             StyleSheet.compose(
               GlobalStyles.ExpoImageStyles(theme)['Image (default)'].style,
@@ -330,6 +330,7 @@ const AddTeamScreen = props => {
                     key: 'Location',
                     value: newTextInputValue,
                   });
+                  setLocation(newTextInputValue);
                 } catch (err) {
                   console.error(err);
                 }
@@ -391,15 +392,16 @@ const AddTeamScreen = props => {
               onChangeText={newTextInputValue => {
                 try {
                   setGlobalVariableValue({
-                    key: 'Location',
+                    key: 'Grade',
                     value: newTextInputValue,
                   });
+                  setDivision(newTextInputValue);
                 } catch (err) {
                   console.error(err);
                 }
               }}
               webShowOutline={true}
-              placeholder={'Location'}
+              placeholder={'Division'}
               placeholderTextColor={palettes.App.Communical_Yellow_Emoticons}
               style={StyleSheet.applyWidth(
                 {
@@ -439,8 +441,8 @@ const AddTeamScreen = props => {
               try {
                 const TeamListPost = (
                   await shootrSupabaseDBAPITeamListPostPOST.mutateAsync({
-                    Division: Division,
-                    Location: Location,
+                    Division: Constants['Grade'],
+                    Location: Constants['Location'],
                     Sport: Sport,
                     TeamID: TeamID,
                     TeamName: TeamName,

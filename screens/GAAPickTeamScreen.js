@@ -59,7 +59,7 @@ const GAAPickTeamScreen = props => {
                       Notification: 'Started Match',
                       TeamID: Constants['TeamID'],
                       TeamName: Constants['HomeTeam'],
-                      createdat: '19:18:55',
+                      date: 'now',
                     })
                   )?.json;
                   navigation.navigate('ChooseYourGoalScreen');
